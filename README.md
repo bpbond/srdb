@@ -37,25 +37,17 @@ Date		|	Change
 			|	Many corrections to older data
 			|	New R script for error-checking and mapping
 			|	Removed kmz file
------------ | ------------------------------------------------------------
 20120510	|	(figshare doi: 10.6084/m9.figshare.868954)
 			|	Pubs from 2011 added, many other corrections to temp models
------------ | ------------------------------------------------------------
 20110524	|	A few late-breaking studies added, and kmz file updated
------------ | ------------------------------------------------------------
 20110513	|	Many missing 2010 studies added, and a number of errors fixed
 			|		Thanks to Dan Metcalfe and Les Hook
------------ | ------------------------------------------------------------
 20110224	|	More 2010 pubs added; three fields deleted:
 			|		Chamber_method, CH4_flux, N2O_flux
 			|		These were all inconsistent or almost never used
------------ | ------------------------------------------------------------
 20101029	|	Pubs from first half of 2010 added
------------ | ------------------------------------------------------------
 20100825	|	A number of Age_disturbance fields corrected and filled in
------------ | ------------------------------------------------------------
 20100517	|	PY2009 data added. Field reordered to match Biogeosciences ms
------------ | ------------------------------------------------------------
 20100222	|	Partition_method field fixed for many records
 			|		Thanks to Myroslava Khomik
 
