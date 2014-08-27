@@ -4,25 +4,28 @@ srdb
 Global soil respiration database
 Updated: 18-December-2013
 
+About srdb
+-----------------------
+This project is not code. Rather, it's a database of published studies
+about soil surface CO2 flux (soil respiration) in the field, intended to
+serve as a resource for scientific analysis.
+
+How to get the data
+If you're using git, fork/checkout this repository. *If you want a simple download*, click on the "Releases" tab above.
+
 List of files in this package
 -----------------------
-calculations					Directory of spreadsheets (figure estimates)
-corrections-additions.xls		Excel workbook for corrections/additions 
-expanded_field_notes.txt		More info on some fields and their uses 
-READ_ME.txt						This file
-srdb-data_fields.txt			Metadata for the srdb-data file
-srdb-data.csv					Main database
-srdb-studies_fields.txt			Metadata for the srdb-studies file
-srdb-studies.csv				Studies database
 
--------------------------------------------------------------------
--- If you'd like to know when these data are updated:            --
--- http://groups.google.com/group/srdb-project-announce          --
--------------------------------------------------------------------
-
-If you'd like to obtain a PDF of one of the database studies: --
------------------------
-Email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with the four-digit study number                                   
+File						|	Description
+----------------------------|------------------------------------------------
+calculations				|	Directory of spreadsheets (figure estimates)
+corrections-additions.xls	|	Excel workbook for corrections/additions 
+expanded_field_notes.txt	|	More info on some fields and their uses 
+READ_ME.md					|	Generates this README
+srdb-data_fields.txt		|	Metadata for the srdb-data file
+srdb-data.csv				|	Main database
+srdb-studies_fields.txt		|	Metadata for the srdb-studies file
+srdb-studies.csv			|	Studies database
 
 Changelog
 -----------------------
@@ -39,29 +42,25 @@ Date		|	Change
 20100517	|	PY2009 data added. Field reordered to match Biogeosciences ms.
 20100222	|	Partition_method field fixed for many records. Thanks to Myroslava Khomik.
 
-
-About srdb
------------------------
-This project is not code. Rather, it's a database of published studies
-about soil surface CO2 flux (soil respiration) in the field, intended to
-serve as a resource for scientific analysis.
-
-How to get the data
------------------------
-See http://code.google.com/p/srdb
-If you'd like to know when these data are updated, use the project feeds or subscribe to the announcement list.
-
 How to use these data
 -----------------------
 Read the documentation! There are a few fields to be especially careful of, especially "CO2_method" (many analyses will want to exclude soda lime measurements, e.g.), "Manipulation" (you may want to filter to "None" to look at natural systems), "Ecosystem_state" (ditto), and "Ecosystem_type" (agriculture is guaranteed to be disturbed).
+
+How to get a publication
+-----------------------
+If you'd like to obtain a PDF of one of the database studies, email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with the four-digit study number                                   
 
 How to cite these data
 -----------------------
 Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:10.5194/bgd-7-1321-2010.
 
-Analyses using these data should include the database version (e.g., "20100517a"), download date, and URL.
+Analyses using these data should include the database version (i.e. the git tag, such as "20100517a"), download date, and URL.
 
-How to contribute 
+Mailing list (NOT YET UPDATED FOR GITHUB)
+-----------------------
+If you'd like to know when these data are updated, a mailing list is available at http://groups.google.com/group/srdb-project-announce
+
+How to contribute (NOT YET UPDATED FOR GITHUB)
 -----------------------
 The goal is for this to be a dynamic, community database, not just an
 archived blob. Why? Well, these data undoubtedly have mistakes and
