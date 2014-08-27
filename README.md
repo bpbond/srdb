@@ -1,7 +1,10 @@
-srdb
+ **If you want a simple download**, click on the "Releases" tab above.
+ 
+ srdb
 ====
 
 Global soil respiration database
+
 Last data update: 18 December 2013
 
 About srdb
@@ -9,9 +12,6 @@ About srdb
 This project is not code. Rather, it's a database of published studies
 about soil surface CO2 flux (soil respiration) in the field, intended to
 serve as a resource for scientific analysis.
-
-How to get the data
-If you're using git, fork/checkout this repository. **If you want a simple download**, click on the "Releases" tab above.
 
 List of files in this package
 -----------------------
@@ -49,13 +49,13 @@ Read the documentation! There are a few fields to be especially careful of, espe
 
 How to get a publication
 -----------------------
-If you'd like to obtain a PDF of one of the database studies, email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with the four-digit study number                                   
+If you'd like to obtain a PDF of one of the database studies, email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with the four-digit study number.                                  
 
 How to cite these data
 -----------------------
 Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
 
-Analyses using these data should include the database version (i.e. the git tag, such as "20100517a"), download date, and URL.
+Analyses using these data should include the database version (i.e. the git tag, such as "v20131218a"), download date, and URL.
 
 Mailing list
 -----------------------
