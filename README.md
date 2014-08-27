@@ -2,7 +2,7 @@ srdb
 ====
 
 Global soil respiration database
-Updated: 18-December-2013
+Last data update: 18 December 2013
 
 About srdb
 -----------------------
@@ -32,7 +32,7 @@ Changelog
 
 Date		|	Change
 ----------- | ------------------------------------------------------------
-20140827	|	Shifted from google code to github (no data changes).
+20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
 20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
 20110524	|	A few late-breaking studies added, and kmz file updated
@@ -53,13 +53,13 @@ If you'd like to obtain a PDF of one of the database studies, email Ben Bond-Lam
 
 How to cite these data
 -----------------------
-Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:10.5194/bgd-7-1321-2010.
+Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
 
 Analyses using these data should include the database version (i.e. the git tag, such as "20100517a"), download date, and URL.
 
 Mailing list
 -----------------------
-If you'd like to know when these data are updated, a mailing list is available at http://groups.google.com/group/srdb-project-announce
+If you'd like to know when these data are updated, a mailing list is available at http://groups.google.com/group/srdb-project-announce.
 
 How to contribute
 -----------------------
