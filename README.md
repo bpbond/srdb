@@ -29,6 +29,8 @@ srdb-studies.csv				Studies database
 Changelog
 -----------------------
 
+Date		|	Change
+----------- | ------------------------------------------------------------
 20131218	|	Pubs from 2012 added (466 new records)
 			|	Two new fields (measurement interval and annual coverage)
 			|	Renamed CO2_method to Meas_method
