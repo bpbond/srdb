@@ -49,13 +49,11 @@ Read the documentation! There are a few fields to be especially careful of, espe
 
 How to get a publication
 -----------------------
-If you'd like to obtain a PDF of one of the database studies, email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with the four-digit study number.                                  
+If you'd like to obtain a PDF of one of the database studies, open an issue or email Ben Bond-Lamberty, the maintainer. In either case please specify the four-digit study number.                                  
 
 How to cite these data
 -----------------------
-Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
-
-Analyses using these data should include the database version (i.e. the git tag, such as "v20131218a"), download date, and URL.
+Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010). Analyses using these data should include the database version (i.e. the git tag, such as "v20131218a"), download date, and URL.
 
 Mailing list
 -----------------------
