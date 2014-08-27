@@ -20,34 +20,24 @@ srdb-studies.csv				Studies database
 -- http://groups.google.com/group/srdb-project-announce          --
 -------------------------------------------------------------------
 
--------------------------------------------------------------------
--- If you'd like to obtain a PDF of one of the database studies: --
--- email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with           --
--- the four-digit study number                                   --
--------------------------------------------------------------------
+If you'd like to obtain a PDF of one of the database studies: --
+-----------------------
+Email Ben Bond-Lamberty (bondlamberty@pnnl.gov) with the four-digit study number                                   
 
 Changelog
 -----------------------
 
 Date		|	Change
 ----------- | ------------------------------------------------------------
-20131218	|	Pubs from 2012 added (466 new records)
-			|	Two new fields (measurement interval and annual coverage)
-			|	Renamed CO2_method to Meas_method
-			|	Many corrections to older data
-			|	New R script for error-checking and mapping
-			|	Removed kmz file
-20120510	|	(figshare doi: 10.6084/m9.figshare.868954)
-			|	Pubs from 2011 added, many other corrections to temp models
+20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
+20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
 20110524	|	A few late-breaking studies added, and kmz file updated
-20110513	|	Many missing 2010 studies added, and a number of errors fixed
-			|		Thanks to Dan Metcalfe and Les Hook
-20110224	|	More 2010 pubs added; three fields deleted: Chamber_method, CH4_flux, N2O_flux. These were all inconsistent or almost never used
-20101029	|	Pubs from first half of 2010 added
-20100825	|	A number of Age_disturbance fields corrected and filled in
-20100517	|	PY2009 data added. Field reordered to match Biogeosciences ms
-20100222	|	Partition_method field fixed for many records
-			|		Thanks to Myroslava Khomik
+20110513	|	Many missing 2010 studies added, and a number of errors fixed. Thanks to Dan Metcalfe and Les Hook.
+20110224	|	More 2010 pubs added; three fields deleted: Chamber_method, CH4_flux, N2O_flux. These were all inconsistent or almost never used.
+20101029	|	Pubs from first half of 2010 added.
+20100825	|	A number of Age_disturbance fields corrected and filled in.
+20100517	|	PY2009 data added. Field reordered to match Biogeosciences ms.
+20100222	|	Partition_method field fixed for many records. Thanks to Myroslava Khomik.
 
 
 About srdb
