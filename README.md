@@ -11,7 +11,7 @@ about soil surface CO2 flux (soil respiration) in the field, intended to
 serve as a resource for scientific analysis.
 
 How to get the data
-If you're using git, fork/checkout this repository. *If you want a simple download*, click on the "Releases" tab above.
+If you're using git, fork/checkout this repository. **If you want a simple download**, click on the "Releases" tab above.
 
 List of files in this package
 -----------------------
@@ -32,6 +32,7 @@ Changelog
 
 Date		|	Change
 ----------- | ------------------------------------------------------------
+20140827	|	Shifted from google code to github (no data changes).
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
 20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
 20110524	|	A few late-breaking studies added, and kmz file updated
@@ -56,27 +57,25 @@ Bond-Lamberty and Thomson (2010). A global database of soil respiration measurem
 
 Analyses using these data should include the database version (i.e. the git tag, such as "20100517a"), download date, and URL.
 
-Mailing list (NOT YET UPDATED FOR GITHUB)
+Mailing list
 -----------------------
 If you'd like to know when these data are updated, a mailing list is available at http://groups.google.com/group/srdb-project-announce
 
-How to contribute (NOT YET UPDATED FOR GITHUB)
+How to contribute
 -----------------------
 The goal is for this to be a dynamic, community database, not just an
 archived blob. Why? Well, these data undoubtedly have mistakes and
 omissions; the database could be structured more usefully for new
 analyses; and the dataset should be extended as new studies are
-published. Internet-based hosting services like Google Code give us, for
-the first time, the ability to build a 21st-century data set that is
+published. Internet-based hosting services like give us the ability to build a 21st-century data set that is
 modified by, and grows with, the needs of the scientific community.
-There are at least ways to contribute. The first, and preferred, way is
-to check out (using Subversion) a copy of the data, just as if this were
+There are at least ways to contribute. The **first**, and preferred, way is
+to fork out (using git) a copy of the data, just as if this were
 an open-source software project. You can then modify or add data and
-commit your modified copy back to the repository; a Google account (and
-membership in the project) is needed for this last step . The second way
+send me a pull request. The **second** way
 is to use the Excel workbook provided (under Downloads) for data entry
 and then email the file back to one of the project administrators. The
-third way to help is to file a bug report on the Issues tab or via email
+**third** way to help is to file a bug report on the Issues tab or via email
 to one of the admins. For all cases, instructions can be found with the
-downloaded material, or in the online wiki.
+downloaded material.
 
