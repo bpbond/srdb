@@ -1,0 +1,60 @@
+This file contains exapnded descriptions or usage notes for a number of fields in the soil respiration database.
+Last updated: 18-Dec-2013
+
+----------
+Ecosystem_state
+This and a number of the other 'subjective' fields (marked with an asterisk) are highly subjective. Here "natural" means unomdified by humans; "managed" means under active management; and "unmanaged" means human management or disturbance in the past, but not currently.
+
+----------
+Age_ecosystem
+This is used when, e.g., the time of conversion of forest to agriculture is known. In contrast, age_disturbance records time of last disturbance in general.
+
+----------
+Meas_interval, Annual_coverage
+These are approximate values for time between measurements (days, over entire year) and fraction of year covered by measurements. Currently these fields are only filled in for records with Rs_annual values.
+
+----------
+Partition_method
+See Bond-Lamberty et al. (2004) in Global Change Biology for an explanation of the categories used here.
+
+----------
+Rs_annual_err
+This is reported error associated with Rs_annual. Typically spatial (plot-to-plot) but can be other sources too.
+
+----------
+Rs_interann_err
+This is defined simply as the standard deviation between year i and year i+1, so n=2 always, and this field will be blank in at least one observation for each study.
+
+----------
+T_depth
+Given in cm; a value of -200 (i.e., 2 m above ground) is used for air temperature.
+
+----------
+Litter_flux
+This is reported very inconsistently--leaf only, leaf and fine woody material, all material, etc. Generally this should not include large woody material.
+
+----------
+TotDet_flux
+This should be the sum of Litter_flux and Rootlitter_flux.
+
+----------
+C_veg_total
+This should be the sum of C_AG and C_BG. For this and all "C_" fields, biommass has been converted to carbon using a ratio of 0.5.
+
+----------
+Quality_flag
+Quality control flags are as follows:
+		Q0	default (none)
+		Q01	estimated from figure
+		Q02	data from another study
+		Q03	data estimated--other
+		Q04	potentially useful future data
+		Q10	potential problem with data
+		Q11	suspected problem with data
+		Q12	known problem with data
+		Q13	duplicate?
+		Q14	inconsistency
+
+----------
+Rank	[ in srdb_studies.csv ]
+Note this score (1-4, with 1 being "highly relevant" and 4 "not relevant") is not an assessment of the study's scientific merit or validity; it's simply a judgement, based on reading the abstract and title, of how relevant this study is to the database (i.e., is it likely to have appropriate data?).
