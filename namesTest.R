@@ -1,6 +1,7 @@
 #This is a test to check if column names in database correspond to field descriptions.
 
-txt=read.table("~/Documents/Data/Global/srdb/srdb-data_fields.txt",sep=",")
+srdb=read.csv("~/srdb/srdb-data.csv")
+txt=read.table("~/srdb/srdb-data_fields.txt",sep=",")
 
 txt=as.character(txt[txt[,2]!="",2]) #Names in the srdb-data_fields.txt file
 ndb=names(srdb) #Column names in database
