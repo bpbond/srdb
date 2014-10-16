@@ -22,3 +22,7 @@ Temporary Items
 
 
 .Rapp.history
+
+.Rhistory
+
+*.pdf
