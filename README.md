@@ -5,7 +5,7 @@
 
 Global soil respiration database
 
-Last data update: 18 December 2013
+Last data update: 18 August 2015
 
 About srdb
 -----------------------
