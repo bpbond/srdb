@@ -32,7 +32,7 @@ Changelog
 
 Date		|	Change
 ----------- | ------------------------------------------------------------
-20150901    |   Fixes to faulty lon/lat values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
+20150826    |   Fixes to faulty lon/lat values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
 20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
