@@ -9,7 +9,7 @@ Last data update: 18 August 2015
 
 About srdb
 -----------------------
-This project is not code. Rather, it's a database of published studies
+This project is **not code**. Rather, it's a database of published studies
 about soil surface CO2 flux (soil respiration) in the field, intended to
 serve as a resource for scientific analysis.
 
@@ -32,6 +32,7 @@ Changelog
 
 Date		|	Change
 ----------- | ------------------------------------------------------------
+20150901    |   Fixes to faulty lon/lat values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
 20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
