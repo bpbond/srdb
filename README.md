@@ -54,7 +54,10 @@ If you'd like to obtain a PDF of one of the database studies, open an issue or e
 
 How to cite these data
 -----------------------
-Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, Biogeosciences 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010). Analyses using these data should include the database version (i.e. the tag, such as "v20131218a", and ideally the git commit), download date, and URL.
+This data set is **open**, and no co-authorship is required (or wanted) if you make use of it. The relevant citation is:
+* Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, *Biogeosciences* 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
+
+Analyses using these data should include the database version (i.e. the tag, such as "v20131218a", and ideally the git commit), download date, and URL. (At some point in the future, releases will include a DOI, too.)
 
 Mailing list
 -----------------------
