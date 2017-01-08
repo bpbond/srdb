@@ -1,0 +1,14 @@
+SRDB procedures / notes list
+
+
+Study ID, filtering, downloading:
+
+1. Run WOS queries, e.g. xxx
+2. Download results
+3. Import to Filemaker Pro
+4. Rank
+5. Download and request
+6. Go through
+
+Data entry:
+
