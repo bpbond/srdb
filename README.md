@@ -13,7 +13,7 @@ This project is **not code**. Rather, it's a database of published studies
 about soil surface CO2 flux (soil respiration) in the field, intended to
 serve as a resource for scientific analysis.
 
-List of files in this package
+List of files in this repository
 -----------------------
 
 File						|	Description
