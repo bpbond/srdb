@@ -1,10 +1,10 @@
+# Apple stuff
 .DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*
@@ -20,9 +20,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
+# R files
 .Rapp.history
-
 .Rhistory
 
+# Script diagnostic plots
 *.pdf

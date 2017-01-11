@@ -2,6 +2,10 @@ This file contains exapnded descriptions or usage notes for a number of fields i
 Last updated: 18-Dec-2013
 
 ----------
+Study_midyear
+A study that runs from January 1 - December 31, 201X is entered as 201X.5. (This may be inconsistent in some entries.)
+
+----------
 Ecosystem_state
 This and a number of the other 'subjective' fields (marked with an asterisk) are highly subjective. Here "natural" means unomdified by humans; "managed" means under active management; and "unmanaged" means human management or disturbance in the past, but not currently.
 
