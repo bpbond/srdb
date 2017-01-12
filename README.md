@@ -5,7 +5,7 @@
 
 Global soil respiration database
 
-Last data update: 7 January 2016
+Last data update: 12 January 2016
 
 About srdb
 -----------------------
@@ -75,7 +75,7 @@ There are at least ways to contribute. The **first**, and preferred, way is
 to fork out (using git) a copy of the data, just as if this were
 an open-source software project. You can then modify or add data and
 send me a pull request. The **second** way
-is to use the Excel workbook provided (under Downloads) for data entry
+is to use the Excel workbook provided for data entry
 and then email the file back to one of the project administrators. The
 **third** way to help is to file a bug report on the Issues tab or via email
 to one of the admins. For all cases, instructions can be found with the
