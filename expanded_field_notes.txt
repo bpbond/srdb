@@ -3,7 +3,7 @@ Last updated: 18-Dec-2013
 
 ----------
 Study_midyear
-A study that runs from January 1 - December 31, 201X is entered as 201X.5. (This may be inconsistent in some entries.)
+A study that runs from January 1 - December 31, 201X is entered as 201X.5. (This is known to be inconsistent in some entries, and will be fixed at some point.)
 
 ----------
 Ecosystem_state
@@ -15,11 +15,11 @@ This is used when, e.g., the time of conversion of forest to agriculture is know
 
 ----------
 Meas_interval, Annual_coverage
-These are approximate values for time between measurements (days, over entire year) and fraction of year covered by measurements. Currently these fields are only filled in for records with Rs_annual values.
+These are approximate values for time between measurements (days, over entire year) and fraction of year covered by measurements. These fields are only filled in for records with Rs_annual values.
 
 ----------
 Partition_method
-See Bond-Lamberty et al. (2004) in Global Change Biology for an explanation of the categories used here.
+See Bond-Lamberty et al. (2004, 10.1111/j.1365-2486.2004.00816.x) for an explanation of the categories used here. Briefly, "comparison" involves comparing different sites; "exclusion" is trench plots and the like; "extraction" involves measuring respiration rates of roots taken from the soil; "isotope"; and "mass balance" that partitions using other parts of the C cycle.
 
 ----------
 Rs_annual_err
