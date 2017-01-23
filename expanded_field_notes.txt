@@ -1,9 +1,21 @@
 This file contains exapnded descriptions or usage notes for a number of fields in the soil respiration database.
-Last updated: 18-Dec-2013
+Last updated: 23-Jan-2017
+
+----------
+Latitude
+Decimal degrees north. The number of significant digits corresponds roughly to precision given in the original source.
+
+----------
+Longitude
+Decimal degrees east. The number of significant digits corresponds roughly to precision given in the original source.
 
 ----------
 Study_midyear
-A study that runs from January 1 - December 31, 201X is entered as 201X.5. (This is known to be inconsistent in some entries, and will be fixed at some point.)
+A study that runs from January 1 - December 31, 201X is entered as 201X.5. (This is known to be inconsistent in earlier entries, and will be fixed at some point.)
+
+----------
+YearsOfData
+Number of years from which _annual_ data are drawn (e.g., Rs_annual) and originally intended to be used as a weighting factor in regressions. As a result, this will never be less than one.
 
 ----------
 Ecosystem_state
