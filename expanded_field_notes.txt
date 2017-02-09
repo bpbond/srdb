@@ -11,7 +11,7 @@ Decimal degrees east. The number of significant digits corresponds roughly to pr
 
 ----------
 Study_midyear
-A study that runs from January 1 - December 31, 201X is entered as 201X.5. (This is known to be inconsistent in earlier entries, and will be fixed at some point.)
+Study midyear, rounded to the nearest 0.5 year. A study that runs from January 1 - December 31, 2015 is entered as 2015.5, whereas July 1, 2014-June 30, 2015 is entered as 2015.0.
 
 ----------
 YearsOfData
@@ -40,6 +40,10 @@ This is reported error associated with Rs_annual. Typically spatial (plot-to-plo
 ----------
 Rs_interann_err
 This is defined simply as the standard deviation between year i and year i+1, so n=2 always, and this field will be blank in at least one observation for each study.
+
+----------
+Rh_annual
+This number (annual heterotrophic respiration, gC/m2) should include litter respiration (Rlitter_annual) so that Ra_annual + Rh_annual roughly equals Rs_annual.
 
 ----------
 T_depth

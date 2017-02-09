@@ -32,6 +32,7 @@ Changelog
 
 Date		|	Change
 ----------- | ------------------------------------------------------------
+2017XXXX    |   Data from 2013-2015 added. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X.
 20150826    |   Fixes to faulty lon/lat values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
