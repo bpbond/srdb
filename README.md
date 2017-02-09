@@ -5,7 +5,7 @@
 
 Global soil respiration database
 
-Last data update: 12 January 2016
+Last data update: 9 February 2017
 
 About srdb
 -----------------------
@@ -30,20 +30,20 @@ srdb-studies.csv			|	Studies database
 Changelog
 -----------------------
 
-Date		|	Change
------------ | ------------------------------------------------------------
-2017XXXX    |   Data from 2013-2015 added. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X.
-20150826    |   Fixes to faulty lon/lat values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
+Date	   	|	Change
+-------- | ------------------------------------------------------------
+2017XXXX | Data from 2013-2015 added. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X.
+20150826 | Fixes to faulty `Longitude` and `Latitude` values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
-20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed CO2_method to Meas_method; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
+20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed `CO2_method` to `Meas_method`; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
 20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
 20110524	|	A few late-breaking studies added, and kmz file updated
 20110513	|	Many missing 2010 studies added, and a number of errors fixed. Thanks to Dan Metcalfe and Les Hook.
-20110224	|	More 2010 pubs added; three fields deleted: Chamber_method, CH4_flux, N2O_flux. These were all inconsistent or almost never used.
+20110224	|	More 2010 pubs added; three fields deleted: `Chamber_method`, `CH4_flux`, `N2O_flux`. These were all inconsistent or almost never used.
 20101029	|	Pubs from first half of 2010 added.
-20100825	|	A number of Age_disturbance fields corrected and filled in.
+20100825	|	A number of `Age_disturbance` fields corrected and filled in.
 20100517	|	PY2009 data added. Field reordered to match Biogeosciences ms.
-20100222	|	Partition_method field fixed for many records. Thanks to Myroslava Khomik.
+20100222	|	`Partition_method` field fixed for many records. Thanks to Myroslava Khomik.
 
 How to use these data
 -----------------------
@@ -51,7 +51,7 @@ Read the documentation! There are a few fields to be especially careful of, espe
 
 How to get a publication
 -----------------------
-If you'd like to obtain a PDF of one of the database studies, open an issue or email Ben Bond-Lamberty, the maintainer. In either case please specify the four-digit study number.                                  
+If you'd like to obtain a PDF of one of the database studies, open an issue or email Ben Bond-Lamberty, the maintainer. In either case please specify the study number.                                  
 
 How to cite these data
 -----------------------
