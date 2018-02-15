@@ -21,6 +21,7 @@ File						|	Description
 calculations				|	Directory of spreadsheets (generally data estimated from figures)
 corrections-additions.xls	|	Excel workbook for corrections/additions 
 expanded_field_notes.txt	|	More info on some fields and their uses 
+LICENSE | The SRDB uses the MIT license, a short, simple, and permissive license requiring only preservation of copyright and license notices
 README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
 srdb-data.csv				|	Main database
@@ -37,7 +38,7 @@ Date	   	|	Change
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed `CO2_method` to `Meas_method`; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
 20120510	|	Pubs from 2011 added, many other corrections to temp models. Figshare doi: 10.6084/m9.figshare.868954.
-20110524	|	A few late-breaking studies added, and kmz file updated
+20110524	|	A few late-breaking studies added, and kmz file updated.
 20110513	|	Many missing 2010 studies added, and a number of errors fixed. Thanks to Dan Metcalfe and Les Hook.
 20110224	|	More 2010 pubs added; three fields deleted: `Chamber_method`, `CH4_flux`, `N2O_flux`. These were all inconsistent or almost never used.
 20101029	|	Pubs from first half of 2010 added.
