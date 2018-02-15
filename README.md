@@ -18,21 +18,21 @@ List of files in this repository
 
 File						|	Description
 ----------------------------|------------------------------------------------
-calculations				|	Directory of spreadsheets (figure estimates)
+calculations				|	Directory of spreadsheets (generally data estimated from figures)
 corrections-additions.xls	|	Excel workbook for corrections/additions 
 expanded_field_notes.txt	|	More info on some fields and their uses 
-READ_ME.md					|	Generates this README
+README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
 srdb-data.csv				|	Main database
 srdb-studies_fields.txt		|	Metadata for the srdb-studies file
-srdb-studies.csv			|	Studies database
+srdb-studies.csv			|	Studies database (gzip'd)
 
 Changelog
 -----------------------
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
-20180203 | All data through 2013 along with some 2014 and 2015. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X. `Latitude` and `Longitude` fields may now be either decimal or d-m-s format.
+20180203 | All data through 2013 along with some 2014 and 2015. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X. `Latitude` and `Longitude` fields may now be either decimal or d-m-s format. Thanks to Mercedes Horn.
 20150826 | Fixes to faulty `Longitude` and `Latitude` values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed `CO2_method` to `Meas_method`; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
@@ -47,7 +47,7 @@ Date	   	|	Change
 
 How to use these data
 -----------------------
-Read the documentation! There are a few fields to be especially careful of, especially "CO2_method" (many analyses will want to exclude soda lime measurements, e.g.), "Manipulation" (you may want to filter to "None" to look at natural systems), "Ecosystem_state" (ditto), and "Ecosystem_type" (agriculture is guaranteed to be disturbed).
+Read the documentation! There are a few fields to be especially careful of, especially "Quality_flag", "CO2_method" (e.g. many analyses will want to exclude soda lime measurements), "Manipulation" (you may want to filter to "None" to look at un-manipulated systems), "Ecosystem_state", and "Ecosystem_type" (agriculture is guaranteed to be disturbed).
 
 How to get a publication
 -----------------------
@@ -55,7 +55,7 @@ If you'd like to obtain a PDF of one of the database studies, open an issue or e
 
 How to cite these data
 -----------------------
-This data set is **open**, and no co-authorship is required (or wanted) if you make use of it. The relevant citation is:
+This data set is **open**, and no co-authorship is required if you make use of it. The relevant citation is:
 * Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, *Biogeosciences* 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
 
 Analyses using these data should include the database version (i.e. the tag, such as "v20131218a", and ideally the git commit), download date, and URL. (At some point in the future, releases will include a DOI, too.)
