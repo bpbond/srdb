@@ -21,7 +21,7 @@ File						|	Description
 calculations				|	Directory of spreadsheets (generally data estimated from figures)
 corrections-additions.xls	|	Excel workbook for corrections/additions 
 expanded_field_notes.txt	|	More info on some fields and their uses 
-LICENSE | The SRDB uses the MIT license, a short, simple, and permissive license requiring only preservation of copyright and license notices
+LICENSE | The SRDB uses the MIT license, which is short, simple, and permissive
 README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
 srdb-data.csv				|	Main database
