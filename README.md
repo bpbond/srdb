@@ -5,7 +5,7 @@
 
 Global soil respiration database
 
-Last data update: 3 February 2018
+Last data update: 15 February 2018
 
 About srdb
 -----------------------
@@ -33,7 +33,7 @@ Changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
-20180203 | All data through 2013 along with some 2014 and 2015. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X. `Latitude` and `Longitude` fields may now be either decimal or d-m-s format. Thanks to Mercedes Horn.
+20180215 | All data through 2013 along with some 2014 and 2015. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X. `Latitude` and `Longitude` fields may now be either decimal or d-m-s format. Thanks to Mercedes Horn.
 20150826 | Fixes to faulty `Longitude` and `Latitude` values and site names; thanks to Yaxing Wei of ORNL. Some 2013 data added.
 20140827	|	Shifted from Google Code (svn) to Github (git). No data changes.
 20131218	|	Pubs from 2012 added (466 new records).	Two new fields (measurement interval and annual coverage); renamed `CO2_method` to `Meas_method`; many corrections to older data; new R script for error-checking and mapping; removed kmz file.
