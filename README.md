@@ -1,5 +1,7 @@
  **If you want a simple download**, click on the "Releases" tab above.
  
+(There's also a version on the [ORNL DAAC](https://doi.org/10.3334/ORNLDAAC/1235).)
+
  srdb
 ====
 
