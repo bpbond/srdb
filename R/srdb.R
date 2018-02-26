@@ -270,6 +270,23 @@ printlog("-----------------------------------")
 # -----------------------------------------------------------------------------
 
 theme_set(theme_bw())
+library(ggExtra)
+
+# -----------------------------------------------------------------------------
+# Points over time
+p_rs <- qplot(Study_midyear, Rs_annual, data = srdb, color = Biome) + 
+  ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
+  xlab("Year") + ylab("Rs (gC/m2/yr)")
+png("rs_over_time.png", width = 720, height = 480)
+print(ggExtra::ggMarginal(p_rs, type="histogram"))
+dev.off()
+p_rh <- qplot(Study_midyear, Rh_annual, data = srdb, color = Biome) + 
+  ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
+  xlab("Year") + ylab("Rh (gC/m2/yr)")
+png("rh_over_time.png", width = 720, height = 480)
+print(ggExtra::ggMarginal(p_rh, type="histogram"))
+dev.off()
+
 
 # -----------------------------------------------------------------------------
 # Two simple maps
