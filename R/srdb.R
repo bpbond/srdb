@@ -36,10 +36,10 @@ convert_dms <- function(vec) {
   charvec[is.na(charvec)] <- ""
   df <- data.frame(x = gsub("[NSEW]{1}$", "", charvec))
   # ...and split apart
-  df <- separate(df, x, into = c("d", "m", "s", "junk"), sep = "[dms]", fill = "right")
-  df$d <- as.numeric(df$d)
-  df$m <- as.numeric(df$m)
-  df$s <- as.numeric(df$s)
+  df <- separate(df, x, into = c("d", "m", "s", "junk"), sep = "[dms]", fill = "right", convert = TRUE)
+  if(!is.numeric(df$d)) {
+    stop("Not all values convert to numeric - probably bad characters (other than d/m/s) in field")
+  }
   df <- replace_na(df, list(m = 0, s = 0))
   df$new <- df$d + df$m / 60 + df$s / 60 / 60
   # Change W and S to negative numbers
@@ -53,6 +53,7 @@ convert_dms <- function(vec) {
   df$new
 }
 
+printlog("Converting latitude and longitude to numeric...")
 srdb$Latitude <- convert_dms(srdb$Latitude)
 srdb$Longitude <- convert_dms(srdb$Longitude)
 
@@ -122,8 +123,8 @@ printlog("Error checking:")
 check_fieldnames(srdb, srdb_info)
 
 with(srdb, {
-  check_bounds(Study_number, c(1, 9999))
-  check_bounds(Study_midyear, c(1960, 2012))
+  check_bounds(Study_number, c(1, 19999))
+  check_bounds(Study_midyear, c(1960, 2018))
   check_bounds(YearsOfData, c(1, 99))
   check_bounds(Latitude, c(-90, 90))
   check_bounds(Longitude, c(-180, 180))
