@@ -13,8 +13,8 @@ Site and measurement data,,
 10,Site_name,Name of study site
 11,Study_midyear,Year study was performed (middle year if multiple years)
 12,YearsOfData,Years of data; always ?1
-13,Latitude,"Latitude, either decimal (positive=north, negative=south) or text (d/m/s, followed by N/S)"
-14,Longitude,"Longitude, either decimal (positive=east, negative=west) or text (d/m/s, followed by E/W)"
+13,Latitude,"Latitude, decimal (positive=north, negative=south)"
+14,Longitude,"Longitude, decimal (positive=east, negative=west)"
 15,Elevation,"Elevation, m"
 16,Manipulation,"Manipulation performed (CO2, fertilization, etc.)"
 17,Manipulation_level,Degree of manipulation performed

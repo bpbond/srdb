@@ -28,8 +28,8 @@ srdb <- read.csv("../srdb-data.csv")
 printlog("Reading fields data file...")
 srdb_info <- read.table("../srdb-data_fields.txt", sep = ",")
 
-# The `Latitude` and `Longitude` fields can now be either numeric
-# (XX.XX) or character (e.g., XXdXXmXXsN). Convert to entirely numeric
+# Utility function convert character `Latitude` and `Longitude` fields (sometimes
+# used in data entry) to numeric
 convert_dms <- function(vec) {
   # Remove trailing N/S/E/W...
   charvec <- trimws(as.character(vec))
@@ -52,10 +52,6 @@ convert_dms <- function(vec) {
   }
   df$new
 }
-
-printlog("Converting latitude and longitude to numeric...")
-srdb$Latitude <- convert_dms(srdb$Latitude)
-srdb$Longitude <- convert_dms(srdb$Longitude)
 
 
 # -----------------------------------------------------------------------------
