@@ -5,7 +5,7 @@
 
 Global soil respiration database
 
-Last data update: 15 February 2018
+Last data update: 1 November 2018
 
 About srdb
 -----------------------
@@ -33,7 +33,7 @@ Changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
-20181102 | Fixed a number of bad sand:silt:clay values, duplicate records, and other problems. Thanks to [@ValentineHerr](https://github.com/ValentineHerr) of SI, and Shafer Powell and Debjani Deb of (ORNL DAAC](https://daac.ornl.gov).
+20181102 | Fixed a number of bad sand:silt:clay values, duplicate records, and other problems. Thanks to [@ValentineHerr](https://github.com/ValentineHerr) of SI, and Shafer Powell and Debjani Deb of [ORNL DAAC](https://daac.ornl.gov).
 20180724 | Fixed a number of lat/lon problems, and reverted to purely decimal format for those fields. Thanks to Debjani Deb.
 20180216 | Updated the R QC script so it works correctly new with dataset.
 20180215 | All data through 2013 along with some 2014 and 2015. Fixes to partitioning (`Rh_annual`, `Ra_annual`) in some previous records (studies 2037, 5545, 5727, 6010, 6219). `Study_midyear` field changed so that X.5 is consistently middle of year X. `Latitude` and `Longitude` fields may now be either decimal or d-m-s format. Thanks to Mercedes Horn.
