@@ -26,33 +26,9 @@ library(tidyr)    # 0.7.1
 printlog("Reading data file...")
 srdb <- read.csv("../srdb-data.csv")
 printlog("Reading fields data file...")
-srdb_info <- read.table("../srdb-data_fields.txt", sep = ",")
-
-# Utility function convert character `Latitude` and `Longitude` fields (sometimes
-# used in data entry) to numeric
-convert_dms <- function(vec) {
-  # Remove trailing N/S/E/W...
-  charvec <- trimws(as.character(vec))
-  charvec[is.na(charvec)] <- ""
-  df <- data.frame(x = gsub("[NSEW]{1}$", "", charvec))
-  # ...and split apart
-  df <- separate(df, x, into = c("d", "m", "s", "junk"), sep = "[dms]", fill = "right", convert = TRUE)
-  if(!is.numeric(df$d)) {
-    stop("Not all values convert to numeric - probably bad characters (other than d/m/s) in field")
-  }
-  df <- replace_na(df, list(m = 0, s = 0))
-  df$new <- df$d + df$m / 60 + df$s / 60 / 60
-  # Change W and S to negative numbers
-  negs <- grepl("[SW]{1}$", charvec)
-  df$new[negs] <- -df$new[negs]
-  # Every non-NA and non-blank value should now be numeric
-  convmatch <- (charvec != "") == !is.na(df$new)
-  if(!all(convmatch)) {
-    warning("Not all entries converted correctly: ", which(!convmatch))
-  }
-  df$new
-}
-
+srdb_info <- read.csv("../srdb-data_fields.txt", sep = ",", comment.char = "#")
+printlog("Reading studies data file...")
+srdb_studies <- read.csv("../srdb-studies.csv.gz")
 
 # -----------------------------------------------------------------------------
 # Error checking
@@ -84,13 +60,6 @@ check_lesseq <- function(d1, d2) { 	# d1 should be < =  d2
     message(paste("- in records:", paste(which(greater), collapse = " ")))
   }
 }
-check_range <- function(d, dname = deparse(substitute(d))) {		# d should be ascending range
-  df <- data.frame(d=as.character(d))
-  df <- separate(df, d, into = c("x1", "x2"), sep = ",", fill = "right", convert = TRUE)
-  if(check_numeric(df$x1, paste(dname, "(1)")) & check_numeric(df$x2, paste(dname, "(2)"))) {
-    check_lesseq(df$x1, df$x2)
-  }
-}
 check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should be ascending range
   printlog("Checking", dname, "in (", paste(labs, collapse = ", "), ")")
   inlabs <- d %in% labs
@@ -108,8 +77,8 @@ check_fieldnames <- function(d, d_info) {
   } else {
     printlog("Following names do not match between field descriptions file and database:")
     mismatch <- ndb !=  fnames
-    print(c(rownumber = which(mismatch), data = ndb[ which(mismatch) ],
-            descrip = fnames[ which(mismatch) ]))
+    warning(c(rownumber = which(mismatch), data = ndb[ which(mismatch) ],
+              descrip = fnames[ which(mismatch) ]))
   }
 }
 
@@ -120,6 +89,10 @@ check_fieldnames(srdb, srdb_info)
 
 with(srdb, {
   check_bounds(Study_number, c(1, 19999))
+  study_number_matches <- srdb$Study_number %in% srdb_studies$Study_number
+  if(any(!study_number_matches)) {
+    warning("Study numbers not in studies file: ", srdb$Study_number[!study_number_matches])    
+  }
   check_bounds(Study_midyear, c(1960, 2018))
   check_bounds(YearsOfData, c(1, 99))
   check_bounds(Latitude, c(-90, 90))
@@ -127,9 +100,16 @@ with(srdb, {
   check_bounds(Elevation, c(0, 7999))
   check_bounds(Age_ecosystem, c(0, 999))
   check_bounds(Age_disturbance, c(0, 999))
+  unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
+  if(any(unmanaged_ag)) {
+    warning("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
+  }
   check_labels(Soil_drainage, c("Dry", "Wet", "Medium", "Mixed", ""))
   check_bounds(Soil_BD, c(0.01, 99.9))
   check_bounds(Soil_CN, c(0.01, 99.9))
+  check_bounds(Soil_sand, c(0.0, 999.9))
+  check_bounds(Soil_silt, c(0.0, 999.9))
+  check_bounds(Soil_clay, c(0.0, 999.9))
   check_bounds(MAT, c(-30, 40))
   check_bounds(MAP, c(0, 9999))
   check_bounds(PET, c(0, 9999))
@@ -167,7 +147,9 @@ with(srdb, {
   # TODO: RC_season one of a few values
   
   check_labels(Temp_effect, c("Positive", "Negative", "None", "Mixed", ""))
-  check_range(Model_temp_range)
+  check_numeric(Model_temp_min)
+  check_numeric(Model_temp_max)
+  check_lesseq(Model_temp_min, Model_temp_max)
   check_bounds(Model_N, c(2, 99999))
   check_bounds(Model_R2, c(0, 1))
   check_bounds(T_depth, c(-200, 100))
@@ -183,9 +165,13 @@ with(srdb, {
   check_bounds(Q10_10_20, c(0.1, 200))
   check_bounds(Q10_0_20, c(0.1, 200))
   check_bounds(Q10_other1, c(0.1, 200))
-  check_range(Q10_other1_range)
+  check_numeric(Q10_other1_temp_min)
+  check_numeric(Q10_other1_temp_max)
+  check_lesseq(Q10_other1_temp_min, Q10_other1_temp_max)
   check_bounds(Q10_other2, c(0.1, 200))
-  check_range(Q10_other2_range)
+  check_numeric(Q10_other2_temp_min)
+  check_numeric(Q10_other2_temp_max)
+  check_lesseq(Q10_other2_temp_min, Q10_other2_temp_max)
   
   check_bounds(GPP, c(0, 9999))
   check_bounds(ER, c(0, 9999))
@@ -235,7 +221,6 @@ if(sum(srdb_spatial$landfrac <= 0.1, na.rm = TRUE)) {
   message(paste("- low-land records:", paste(notonland, collapse = " ")))
 }
 
-
 printlog("All done with error checking. <RETURN>")
 readline()
 
@@ -271,17 +256,19 @@ library(ggExtra)
 
 # -----------------------------------------------------------------------------
 # Points over time
-p_rs <- qplot(Study_midyear, Rs_annual, data = srdb, color = Biome) + 
+p_rs <- qplot(Study_midyear, Rs_annual, color = Biome,
+              data = subset(srdb, !is.na(Study_midyear) & !is.na(Biome) & !is.na(Rs_annual) & Rs_annual >= 0 & Rs_annual <= 5000)) + 
   ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
   xlab("Year") + ylab("Rs (gC/m2/yr)")
 png("rs_over_time.png", width = 720, height = 480)
-print(ggExtra::ggMarginal(p_rs, type="histogram"))
+print(ggExtra::ggMarginal(p_rs, type = "histogram"))
 dev.off()
-p_rh <- qplot(Study_midyear, Rh_annual, data = srdb, color = Biome) + 
+p_rh <- qplot(Study_midyear, Rh_annual, color = Biome, 
+              data = subset(srdb, !is.na(Study_midyear) & !is.na(Biome) & !is.na(Rh_annual) & Rh_annual >= 0 & Rh_annual <= 5000)) + 
   ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
   xlab("Year") + ylab("Rh (gC/m2/yr)")
 png("rh_over_time.png", width = 720, height = 480)
-print(ggExtra::ggMarginal(p_rh, type="histogram"))
+print(ggExtra::ggMarginal(p_rh, type = "histogram"))
 dev.off()
 
 
@@ -352,10 +339,11 @@ print(qplot(Rs_annual, data = srdb1, fill = Biome))
 ggsave("Rs_annual-distribution-Biome.pdf")
 print(qplot(Rs_annual, data = srdb1, fill = Ecosystem_type))
 ggsave("Rs_annual-distribution-Ecosystem.pdf")
-print(qplot(Rs_interann_err, data = srdb1, fill = Ecosystem_type))
+print(qplot(Rs_interann_err, data = subset(srdb1, !is.na(Rs_interann_err)), fill = Ecosystem_type))
 ggsave("Rs_interann_err-distribution-Ecosystem.pdf")
 
-print(qplot(Rs_annual, Rh_annual, data = srdb1, color = Biome)
+print(qplot(Rs_annual, Rh_annual, color = Biome,
+            data = subset(srdb1, !is.na(Rs_annual) & !is.na(Rh_annual)))
       + geom_smooth(method = "lm"))
 ggsave("Rs_annual-vs-Rh_annual.pdf")
 
@@ -371,9 +359,9 @@ ggsave("Rs_seasons-distribution.pdf")
 print(qplot(variable, value, geom = "boxplot", data = srdb2))
 ggsave("Rs_seasons-distribution-2.pdf")
 
-srdb3 <- subset(srdb1, Rs_annual > 0 & Ecosystem_state == "Natural")
+srdb3 <- subset(srdb1, !is.na(TBCA) & Rs_annual > 0 & Ecosystem_state == "Natural")
 print(qplot(TBCA, Rs_annual, data = srdb3, color = Biome, main = "Natural ecosystems only") +
         geom_smooth(method = "lm", aes(group = 1))) # interesting!
 ggsave("TBCA-vs-Rs_annual.pdf")
 
-printlog("All done!")
+printlog("All done. Note that if any warnings occurred, these should be checked!")
