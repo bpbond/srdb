@@ -1,7 +1,7 @@
 # srdb.R
 #
 # Script providing error checking and sample processing/analysis of the SRDB
-# Ben Bond-Lamberty  December 2013
+# Ben Bond-Lamberty  December 2013 last updated November 2018
 
 # -----------------------------------------------------------------------------
 # Logging function
@@ -17,18 +17,17 @@ printlog <- function(msg, ..., ts = TRUE, cr = TRUE) {
 
 printlog("Welcome to srdb.R")
 
-# -----------------------------------------------------------------------------
-# Preliminaries
-
-library(ggplot2)  # 2.2.0
-library(tidyr)    # 0.7.1
-
 printlog("Reading data file...")
 srdb <- read.csv("../srdb-data.csv")
+printlog("Rows =", nrow(srdb), "columns =", ncol(srdb))
+
 printlog("Reading fields data file...")
 srdb_info <- read.csv("../srdb-data_fields.txt", sep = ",", comment.char = "#")
+printlog("Rows =", nrow(srdb_info), "columns =", ncol(srdb_info))
+
 printlog("Reading studies data file...")
 srdb_studies <- read.csv("../srdb-studies.csv.gz")
+printlog("Rows =", nrow(srdb_studies), "columns =", ncol(srdb_studies))
 
 # -----------------------------------------------------------------------------
 # Error checking
@@ -251,117 +250,104 @@ printlog("-----------------------------------")
 # Graphics
 # -----------------------------------------------------------------------------
 
-theme_set(theme_bw())
-library(ggExtra)
+if(require(ggplot2) & require(ggExtra)) {
+  
+  theme_set(theme_bw())
 
-# -----------------------------------------------------------------------------
-# Points over time
-p_rs <- qplot(Study_midyear, Rs_annual, color = Biome,
-              data = subset(srdb, !is.na(Study_midyear) & !is.na(Biome) & !is.na(Rs_annual) & Rs_annual >= 0 & Rs_annual <= 5000)) + 
-  ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
-  xlab("Year") + ylab("Rs (gC/m2/yr)")
-png("rs_over_time.png", width = 720, height = 480)
-print(ggExtra::ggMarginal(p_rs, type = "histogram"))
-dev.off()
-p_rh <- qplot(Study_midyear, Rh_annual, color = Biome, 
-              data = subset(srdb, !is.na(Study_midyear) & !is.na(Biome) & !is.na(Rh_annual) & Rh_annual >= 0 & Rh_annual <= 5000)) + 
-  ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
-  xlab("Year") + ylab("Rh (gC/m2/yr)")
-png("rh_over_time.png", width = 720, height = 480)
-print(ggExtra::ggMarginal(p_rh, type = "histogram"))
-dev.off()
-
-
-# -----------------------------------------------------------------------------
-# Two simple maps
-
-if(require(maps) & require(mapdata)) {
-  printlog("Making maps...")
-  world <- map_data("world")
-  srdb_spatial$long <- srdb_spatial$Longitude
-  srdb_spatial$lat <- srdb_spatial$Latitude
-  p1 <- ggplot(srdb_spatial, aes(x = long, y = lat)) + 
-    geom_point(aes(color = Biome)) +
-    geom_path(data = world, aes(group = group)) +
-    scale_y_continuous(breaks = (-2:2) * 30) +
-    scale_x_continuous(breaks = (-4:4) * 45) +
-    coord_fixed(xlim = c(-180, 180), ylim = c(-90, 90)) 
-  print(p1)
-  ggsave("map1-world.pdf")
-  
-  p1na <- p1 + coord_fixed(xlim = c(-160, -50), ylim = c(15, 75))
-  print(p1na)
-  ggsave("map1-northamerica.pdf")
-  
-  p1europe <- p1 + coord_fixed(xlim = c(-10, 45), ylim = c(30, 70))
-  print(p1europe)
-  ggsave("map1-europe.pdf")
-  
-  p1china <- p1 + coord_fixed(xlim = c(75, 135), ylim = c(20, 55))
-  print(p1china)
-  ggsave("map1-china.pdf")
-  
-  p2 <- ggplot(subset(srdb_spatial, landfrac < 0.1), aes(x = long, y = lat)) + 
-    geom_point(aes(color = Biome)) +
-    geom_path(data = world, aes(group = group)) +
-    scale_y_continuous(breaks = (-2:2) * 30) +
-    scale_x_continuous(breaks = (-4:4) * 45) +
-    ggtitle("Low land fraction records") +
-    coord_fixed(xlim = c(-180, 180), ylim = c(-90, 90)) 
-  print(p2)
-  ggsave("map2-lowland-world.pdf")
-  
-  p2na <- p2 + coord_fixed(xlim = c(-160, -50), ylim = c(15, 75))
-  print(p2na)
-  ggsave("map2-lowland-northamerica.pdf")
-  
-  p2europe <- p2 + coord_fixed(xlim = c(-10, 45), ylim = c(30, 70))
-  print(p2europe)
-  ggsave("map2-lowland-europe.pdf")
-  
-  p2china <- p2 + coord_fixed(xlim = c(75, 135), ylim = c(20, 55))
-  print(p2china)
-  ggsave("map2-lowland-china.pdf")
+  # -----------------------------------------------------------------------------
+  # Points over time
+  p_rs <- qplot(Study_midyear, Rs_annual, color = Biome,
+                data = subset(srdb, !is.na(Study_midyear) & !is.na(Biome) & !is.na(Rs_annual) & Rs_annual >= 0 & Rs_annual <= 5000)) + 
+    ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
+    xlab("Year") + ylab("Rs (gC/m2/yr)")
+  png("rs_over_time.png", width = 720, height = 480)
+  print(ggExtra::ggMarginal(p_rs, type = "histogram"))
+  dev.off()
+  p_rh <- qplot(Study_midyear, Rh_annual, color = Biome, 
+                data = subset(srdb, !is.na(Study_midyear) & !is.na(Biome) & !is.na(Rh_annual) & Rh_annual >= 0 & Rh_annual <= 5000)) + 
+    ylim(c(0, 5000)) + geom_vline(xintercept = 2008) + 
+    xlab("Year") + ylab("Rh (gC/m2/yr)")
+  png("rh_over_time.png", width = 720, height = 480)
+  print(ggExtra::ggMarginal(p_rh, type = "histogram"))
+  dev.off()
   
   
-}
-
-
-# -----------------------------------------------------------------------------
-# Summary graphics
-
-# We limit the data (toss out negative values, etc.) to make figures more useful
-printlog("Limiting data set...")
-srdb1 <- subset(srdb, Rs_annual > 0 & Rs_annual < 4000)
-
-printlog("Generating and saving graphs...")
-print(qplot(Rs_annual, data = srdb1, fill = Biome))
-ggsave("Rs_annual-distribution-Biome.pdf")
-print(qplot(Rs_annual, data = srdb1, fill = Ecosystem_type))
-ggsave("Rs_annual-distribution-Ecosystem.pdf")
-print(qplot(Rs_interann_err, data = subset(srdb1, !is.na(Rs_interann_err)), fill = Ecosystem_type))
-ggsave("Rs_interann_err-distribution-Ecosystem.pdf")
-
-print(qplot(Rs_annual, Rh_annual, color = Biome,
-            data = subset(srdb1, !is.na(Rs_annual) & !is.na(Rh_annual)))
-      + geom_smooth(method = "lm"))
-ggsave("Rs_annual-vs-Rh_annual.pdf")
-
-# A little more complex (need to do some data manipulation) - seasonal distribution
-srdb2 <- srdb[c("Rs_spring", "Rs_summer", "Rs_autumn", "Rs_winter")]
-srdb2 <- gather(srdb2, variable, value, Rs_spring, Rs_summer, Rs_autumn, Rs_winter)
-
-srdb2 <- subset(srdb2, value < 10)
-print(qplot(value, data = srdb2, xlab = "Seasonal flux (µmol/m2/s)") 
-      + facet_grid(variable~., scales = "free_y"))
-ggsave("Rs_seasons-distribution.pdf")
-
-print(qplot(variable, value, geom = "boxplot", data = srdb2))
-ggsave("Rs_seasons-distribution-2.pdf")
-
-srdb3 <- subset(srdb1, !is.na(TBCA) & Rs_annual > 0 & Ecosystem_state == "Natural")
-print(qplot(TBCA, Rs_annual, data = srdb3, color = Biome, main = "Natural ecosystems only") +
-        geom_smooth(method = "lm", aes(group = 1))) # interesting!
-ggsave("TBCA-vs-Rs_annual.pdf")
+  # -----------------------------------------------------------------------------
+  # Two simple maps
+  
+  if(require(maps) & require(mapdata)) {
+    printlog("Making maps...")
+    world <- map_data("world")
+    srdb_spatial$long <- srdb_spatial$Longitude
+    srdb_spatial$lat <- srdb_spatial$Latitude
+    p1 <- ggplot(srdb_spatial, aes(x = long, y = lat)) + 
+      geom_point(aes(color = Biome)) +
+      geom_path(data = world, aes(group = group)) +
+      scale_y_continuous(breaks = (-2:2) * 30) +
+      scale_x_continuous(breaks = (-4:4) * 45) +
+      coord_fixed(xlim = c(-180, 180), ylim = c(-90, 90)) 
+    print(p1)
+    ggsave("map1-world.pdf")
+    
+    p1na <- p1 + coord_fixed(xlim = c(-160, -50), ylim = c(15, 75))
+    print(p1na)
+    ggsave("map1-northamerica.pdf")
+    
+    p1europe <- p1 + coord_fixed(xlim = c(-10, 45), ylim = c(30, 70))
+    print(p1europe)
+    ggsave("map1-europe.pdf")
+    
+    p1china <- p1 + coord_fixed(xlim = c(75, 135), ylim = c(20, 55))
+    print(p1china)
+    ggsave("map1-china.pdf")
+    
+    p2 <- ggplot(subset(srdb_spatial, landfrac < 0.1), aes(x = long, y = lat)) + 
+      geom_point(aes(color = Biome)) +
+      geom_path(data = world, aes(group = group)) +
+      scale_y_continuous(breaks = (-2:2) * 30) +
+      scale_x_continuous(breaks = (-4:4) * 45) +
+      ggtitle("Low land fraction records") +
+      coord_fixed(xlim = c(-180, 180), ylim = c(-90, 90)) 
+    print(p2)
+    ggsave("map2-lowland-world.pdf")
+    
+    p2na <- p2 + coord_fixed(xlim = c(-160, -50), ylim = c(15, 75))
+    print(p2na)
+    ggsave("map2-lowland-northamerica.pdf")
+    
+    p2europe <- p2 + coord_fixed(xlim = c(-10, 45), ylim = c(30, 70))
+    print(p2europe)
+    ggsave("map2-lowland-europe.pdf")
+    
+    p2china <- p2 + coord_fixed(xlim = c(75, 135), ylim = c(20, 55))
+    print(p2china)
+    ggsave("map2-lowland-china.pdf")
+  } else printlog("No maps produced - maps not installed")
+  
+  # -----------------------------------------------------------------------------
+  # Summary graphics
+  
+  # We limit the data (toss out negative values, etc.) to make figures more useful
+  printlog("Limiting data set...")
+  srdb1 <- subset(srdb, Rs_annual > 0 & Rs_annual < 4000)
+  
+  printlog("Generating and saving graphs...")
+  print(qplot(Rs_annual, data = srdb1, fill = Biome))
+  ggsave("Rs_annual-distribution-Biome.pdf")
+  print(qplot(Rs_annual, data = srdb1, fill = Ecosystem_type))
+  ggsave("Rs_annual-distribution-Ecosystem.pdf")
+  print(qplot(Rs_interann_err, data = subset(srdb1, !is.na(Rs_interann_err)), fill = Ecosystem_type))
+  ggsave("Rs_interann_err-distribution-Ecosystem.pdf")
+  
+  print(qplot(Rs_annual, Rh_annual, color = Biome,
+              data = subset(srdb1, !is.na(Rs_annual) & !is.na(Rh_annual)))
+        + geom_smooth(method = "lm"))
+  ggsave("Rs_annual-vs-Rh_annual.pdf")
+  
+  srdb3 <- subset(srdb1, !is.na(TBCA) & Rs_annual > 0 & Ecosystem_state == "Natural")
+  print(qplot(TBCA, Rs_annual, data = srdb3, color = Biome, main = "Natural ecosystems only") +
+          geom_smooth(method = "lm", aes(group = 1))) # interesting!
+  ggsave("TBCA-vs-Rs_annual.pdf")
+} else printlog("No plots produced - ggplot2 not installed")
 
 printlog("All done. Note that if any warnings occurred, these should be checked!")
