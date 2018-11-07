@@ -76,7 +76,7 @@ Field_number,Field_name,Field_definition
 63,Temp_effect,"Temperature effect on RS (none, positive, negative)"
 64,Model_output_units,Temperature-response model output units
 65,Model_temp_min,"Minimum soil temperature over which model fitted, deg C"
-66,Model_temp_min,"Maximum soil temperature over which model fitted, deg C"
+66,Model_temp_max,"Maximum soil temperature over which model fitted, deg C"
 67,Model_N,Model N
 68,Model_R2,Model r-squared
 69,T_depth,"Depth at which soil temperature recorded, cm. A value of -200 (i.e., 2 m above ground) is used for air temperature"
