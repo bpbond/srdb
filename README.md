@@ -26,7 +26,7 @@ README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
 srdb-data.csv				|	Main database
 srdb-studies_fields.txt		|	Metadata for the srdb-studies file
-srdb-studies.csv			|	Studies database (gzip'd)
+srdb-studies.csv			|	Studies database
 
 Changelog
 -----------------------
