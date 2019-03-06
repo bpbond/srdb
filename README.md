@@ -33,7 +33,7 @@ Changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
-20190306 | Many corrections to longitude and latitude data; see issue #22. Thanks to @jinshijian
+20190306 | Many corrections to longitude and latitude data; see issue #22. Thanks to [@jinshijian].
 20181101 | Fixed a number of bad sand:silt:clay values, duplicate records, and other problems. Thanks to [@ValentineHerr](https://github.com/ValentineHerr) of SI, and Shafer Powell and Debjani Deb of [ORNL DAAC](https://daac.ornl.gov).
 20180724 | Fixed a number of lat/lon problems, and reverted to purely decimal format for those fields. Thanks to Debjani Deb.
 20180216 | Updated the R QC script so it works correctly with new dataset.
