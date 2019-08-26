@@ -6743,15 +6743,16 @@ Record_number,Entry_date,Study_number,Author,Duplicate_record,Quality_flag,Contr
 6741,2019-01-09,10457,Itoh,,,RM,Indonesia,Central Kalimantan,UF,2015.5,1,-2.32,113.9,,None,,,,Mixed,Tropical,Peatland,Natural,Evergreen,Mature,Peat,Wet,0.11,26.3,,,,26.2,2546,,,2380,IRGA,30,1,Exclusion,,,,,,,,,,745
 6742,2019-01-09,10457,Itoh,,,RM,Indonesia,Central Kalimantan,DF,2015.5,1,-2.35,114.04,,Drained,,15,,Elaeis guineensis,Tropical,Peatland,Managed,Evergreen,Aggrading,Peat,Dry,0.14,31.5,,,,26.2,2546,,,2380,IRGA,30,1,Exclusion,,,,,,,,,,825
 6743,2019-01-09,10457,Itoh,,,RM,Indonesia,Central Kalimantan,UB,2015.5,1,-2.34,114.04,,"Drained, burned",,15,1,Elaeis guineensis,Tropical,Forest,Managed,Evergreen,Aggrading,Peat,Dry,0.24,41.9,,,,26.2,2546,,,2380,IRGA,30,1,Exclusion,,,,,,,,,,748
-6744
-6745
-6746
-6747
-6748
-6749
-6750
-6751
-6752
+6744,2019-01-11,10035,Zhu,,,RM,China,Jiamusi,Saniang Plain,2013,1,47.483,133.350,56,None,,,,"Carex lasiocarpa, Glyceria spiculosa",Boreal,Grassland,Unmanaged,Deciduous,Mature,,Wet,,19.0,,,,2.5,558,,,,Gas chromatography,5,0.5,,,,,,,,,,,,,,,,,2.776,,,,,"Exponential, R=a exp(b(T-c))",Positive,mgC/m2/hr,2.4,28.3,,0.632,5,1.406,0.0019,0,,,,,,,,,,,,,,,,
+6745,2019-01-11,10039,Oelbermann,,,RM,Canada,Onario,Washington Creek,2010.5,1,43.3,-80.55,,None,,25,25,Zea mays L.,Temperate,Forest,Unmanaged,Deciduous,Mature,Loam,Dry,0.99,12.2,44.8,47.5,7.7,7.2,912,,,,Gas chromatography,14,0.42,,,,,,,,,,,,,,,,,3.912,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,219,,,,,,,,,,,,4129,40
+6746,2019-01-11,10039,Oelbermann,,,RM,Canada,Onario,Washington Creek,2010.5,1,43.3,-80.55,200,None,,,5,"Populus x canadensis, Rosa multiflora Thunb.",Temperate,Forest,Managed,Deciduous,Mature,Gray Brown Luvisol,Dry,0.80,13.2,48.4,43.7,7.9,7.2,912,,,,Gas chromatography,14,0.42,,,,,,,,,,,,,,,,,4.491,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,260,,,,,,,,,,,,6100,40
+6747,2019-01-11,10039,Oelbermann,,,RM,Canada,Onario,Washington Creek,2010.5,1,43.3,-80.55,320,None,,,150,"Acer saccharum L., Tilia americana L.",Temperate,Forest,Managed,Deciduous,Mature,Gray Brown Luvisol,Dry,0.75,14.8,49.6,42.2,8.2,7.2,912,,,,Gas chromatography,14,0.42,,,,,,,,,,,,,,,,,2.454,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,132,,,,,,,,,,,,5942,40
+6748,2019-01-11,10041,Lopes de Gerenyua,,,RM,Vietnam,Dong Nai,Cat Tien National Park,2011.5,1,11.583,107.366,,None,,,,"Lagerstroemi, Rubiaceae, Combretaceae, Dipterocarpaceae",Tropical,Forest,Unmanaged,Evergreen,Mature,Heavy loam,Wet,,,30,50,20,26,2450,,,,IRGA,10,1,,1226,79,,,,,,,,,,,,,,,6.157,2.107
+6748,2019-01-11,10041,Lopes de Gerenyua,,,RM,Vietnam,Dong Nai,Cat Tien National Park,2011.5,1,11.583,107.366,,Termite mound,,,,"Lagerstroemi, Rubiaceae, Combretaceae, Dipterocarpaceae",Tropical,Forest,Unmanaged,Evergreen,Mature,Heavy loam,Wet,,,30,50,20,26,2450,,,,IRGA,10,1,,2059,114,,,,,,,,,,,,,,,12.037,4.537,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+6749,2019-01-17,10053,Mander,,,RM,Estonia,Tartu County,,2011,1,58.22777778,26.74805556,,None,,,5,Alnus incana (L.) Moecnch,Temperate,Forest,Unmanaged,Deciduous,Aggrading,Loam,Dry,1.19,17.3,,,,5.6,627.9,,6.9,511.3,Gas chromatography,,,,,,,,,,,,,,,,,,,1.597,,,,,,,,,,,,,,,,,,Negative,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rs_growingseason from mean values in Figure 3a
+6750,2019-01-17,10053,Mander,,,RM,Estonia,Tartu County,,2011,1,58.22777778,26.74805556,,Flooding,,,5,Alnus incana (L.) Moecnch,Temperate,Forest,Unmanaged,Deciduous,Aggrading,Loam,Wet,1.34,17.2,,,,5.6,627.9,,6.9,511.3,Gas chromatography,,,,,,,,,,,,,,,,,,,1.852,,,,,,,,,,,,,,,,,,Negative,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rs_growingseason from mean values in Figure 3a
+6751,2019-01-17,10053,Mander,,,RM,Estonia,Tartu County,,2011,1,58.22777778,26.745,,None,,,50,Alnus incana (L.) Moecnch,Temperate,Forest,Unmanaged,Deciduous,Mature,Loam,Dry,0.53,12.3,,,,5.6,627.9,,6.9,511.3,Gas chromatography,,,,,,,,,,,,,,,,,,,3.194,,,,,,,,,,,,,,,,,,Negative,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rs_growingseason from mean values in Figure 3a
+6752,2019-01-17,10053,Mander,,,RM,Estonia,Tartu County,,2011,1,58.22777778,26.745,,Flooding,,,50,Alnus incana (L.) Moecnch,Temperate,Forest,Unmanaged,Deciduous,Mature,Loam,Wet,0.94,12.2,,,,5.6,627.9,,6.9,511.3,Gas chromatography,,,,,,,,,,,,,,,,,,,1.852,,,,,,,,,,,,,,,,,,Negative,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Rs_growingseason from mean values in Figure 3a
 6753
 6754
 6755
