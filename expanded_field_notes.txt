@@ -74,6 +74,8 @@ Quality control flags are as follows:
 		Q12	known problem with data
 		Q13	duplicate?
 		Q14	inconsistency
+		Q15	seasonal model, not annual
+		Q16	model has a soil water component or dependency
 
 ----------
 Rank	[ in srdb_studies.csv ]
