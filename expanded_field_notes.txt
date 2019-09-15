@@ -10,6 +10,10 @@ Longitude
 Decimal degrees east. The number of significant digits corresponds roughly to precision given in the original source.
 
 ----------
+Site_ID
+A unique site identification code, formed by country (two letters) - site name (three letters) - treatment or distinguishing information.
+
+----------
 Study_midyear
 Study midyear, rounded to the nearest 0.5 year. A study that runs from January 1 - December 31, 2015 is entered as 2015.5, whereas July 1, 2014-June 30, 2015 is entered as 2015.0.
 
