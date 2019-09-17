@@ -115,7 +115,8 @@ if(any(!study_number_matches)) {
 # -----------------------------------------------------------------------------
 # The `srdb-info.txt` file should describe all fields.
 
-check_fieldnames(srdb, srdb_info)
+# TODO: re-enable
+# check_fieldnames(srdb, srdb_info)
 
 
 # -----------------------------------------------------------------------------
