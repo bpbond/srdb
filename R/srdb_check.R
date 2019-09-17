@@ -1,11 +1,9 @@
-# Run basic checks on SRDB data
-# BBL 2019-09-14
+# Run checks on SRDB data for consistency, columns types, out of bounds, etc.
+# BBL 2019-09-17
 
 
-# -----------------------------------------------------------------------------
-# Error checking
+# Helper functions ---------------------------------------------------------
 
-# Helper functions to check various field attributes
 check_numeric <- function(d, dname = deparse(substitute(d))) { 
   message("Checking ", dname, " is numeric")
   if(!is.numeric(d)) {
@@ -55,8 +53,7 @@ check_fieldnames <- function(d, d_info) {
 }
 
 
-# -----------------------------------------------------------------------------
-# Main program
+# Main --------------------------------------------------------------------
 
 message("Welcome to srdb.R")
 
@@ -81,14 +78,13 @@ message("Rows = ", nrow(srdb_studies), ", columns = ", ncol(srdb_studies))
 #}
 
 
-# -----------------------------------------------------------------------------
-# The `srdb-info.txt` file should describe all fields.
+# srdb-info.txt ---------------------------------------------------------
 
+# The `srdb-info.txt` file should describe all fields.
 check_fieldnames(srdb, srdb_info)
 
 
-# -----------------------------------------------------------------------------
-# Field checks
+# Field checks ----------------------------------------------------------
 
 with(srdb, {
   message("------------------------------------------------------ srdb-data.csv")
