@@ -4,10 +4,13 @@
 language: r
 
 r_binary_packages:
-    - ncdf4
+  - ncdf4
 
-install:
-    - Rscript R/install_packages.R
+r_packages:
+  - sp
+
+#install:
+#    - Rscript R/install_packages.R
 
 script:
-    - Rscript R/srdb_check.R
+  - Rscript R/srdb_check.R
