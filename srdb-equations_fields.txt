@@ -1,0 +1,29 @@
+Field_number,Field_name,Field_definition
+#
+# Response of RS to temperature and moisture
+#
+1,Model_type,Type of temperature-response model used
+2,Temp_effect,"Temperature effect on RS (none, positive, negative)"
+3,Model_output_units,Temperature-response model output units
+4,Model_temp_min,"Minimum soil temperature over which model fitted, deg C"
+5,Model_temp_max,"Maximum soil temperature over which model fitted, deg C"
+6,Model_N,Model N
+7,Model_R2,Model r-squared
+8,T_depth,"Depth at which soil temperature recorded, cm. A value of -200 (i.e., 2 m above ground) is used for air temperature"
+9,Model_paramA,Model parameter A
+10,Model_paramB,Model parameter B
+11,Model_paramC,Model parameter C
+12,Model_paramD,Model parameter D
+13,Model_paramE,Model parameter E
+14,WC_effect,Soil water effect on RS
+15,R10,"RS at 10 C, µmol m-2 s-1"
+16,Q10_0_10,"Q10 temperature response, 0-10 C . Q10 values are either reported by authors, calculated from reported RS-temperature regressions, or occasionally estimated from figures (in which case a quality control note is made, field 6)"
+17,Q10_5_15,"Q10 temperature response, 5-15 deg C"
+18,Q10_10_20,"Q10 temperature response, 10-20 deg C"
+19,Q10_0_20,"Q10 temperature response, 0-20 deg C"
+20,Q10_other1,"Q10 temperature response, other temp range"
+21,Q10_other1_temp_min,"Minimum soil temperature over which Q10_other1 fitted, deg C"
+22,Q10_other1_temp_max,"Maximum soil temperature over which Q10_other1 fitted, deg C"
+23,Q10_other2,"Q10 temperature response, other temp range"
+24,Q10_other2_temp_min,"Minimum soil temperature over which Q10_other2 fitted, deg C"
+25,Q10_other2_temp_max,"Maximum soil temperature over which Q10_other2 fitted, deg C"

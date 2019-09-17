@@ -71,56 +71,28 @@ Field_number,Field_name,Field_definition
 61,RC_seasonal,"Root contribution to seasonal RS, fraction"
 62,RC_season,Season of RC_seasonal
 #
-# Response of RS to temperature and moisture
-#
-63,Model_type,Type of temperature-response model used
-64,Temp_effect,"Temperature effect on RS (none, positive, negative)"
-65,Model_output_units,Temperature-response model output units
-66,Model_temp_min,"Minimum soil temperature over which model fitted, deg C"
-67,Model_temp_max,"Maximum soil temperature over which model fitted, deg C"
-68,Model_N,Model N
-69,Model_R2,Model r-squared
-70,T_depth,"Depth at which soil temperature recorded, cm. A value of -200 (i.e., 2 m above ground) is used for air temperature"
-71,Model_paramA,Model parameter A
-72,Model_paramB,Model parameter B
-73,Model_paramC,Model parameter C
-74,Model_paramD,Model parameter D
-75,Model_paramE,Model parameter E
-76,WC_effect,Soil water effect on RS
-77,R10,"RS at 10 C, µmol m-2 s-1"
-78,Q10_0_10,"Q10 temperature response, 0-10 C . Q10 values are either reported by authors, calculated from reported RS-temperature regressions, or occasionally estimated from figures (in which case a quality control note is made, field 6)"
-79,Q10_5_15,"Q10 temperature response, 5-15 deg C"
-80,Q10_10_20,"Q10 temperature response, 10-20 deg C"
-81,Q10_0_20,"Q10 temperature response, 0-20 deg C"
-82,Q10_other1,"Q10 temperature response, other temp range"
-83,Q10_other1_temp_min,"Minimum soil temperature over which Q10_other1 fitted, deg C"
-84,Q10_other1_temp_max,"Maximum soil temperature over which Q10_other1 fitted, deg C"
-85,Q10_other2,"Q10 temperature response, other temp range"
-86,Q10_other2_temp_min,"Minimum soil temperature over which Q10_other2 fitted, deg C"
-87,Q10_other2_temp_max,"Maximum soil temperature over which Q10_other2 fitted, deg C"
-#
 # Ancillary pools and fluxes
 #
-88,GPP,"Annual gross primary production at site, g C m-2"
-89,ER,"Annual ecosystem respiration at site, g C m-2"
-90,NEP,"Annual net ecosystem production at site, g C m-2"
-91,NPP,"Annual net primary production at site, g C m-2"
-92,ANPP,"Annual aboveground NPP at site, g C m-2"
-93,BNPP,"Annual belowground NPP at site, g C m-2"
-94,NPP_FR,"Annual fine root NPP at site, g C m-2"
-95,TBCA,"Total belowground carbon allocation at site, g C m-2"
-96,Litter_flux,"Annual aboveground litter flux, g C m-2. This is reported very inconsistently (leaf only, leaf and fine woody material, all material, etc). Generally this should not include large woody material"
-97,Rootlitter_flux,"Annual belowground litter flux, g C m-2"
-98,TotDet_flux,"Annual total litter flux, g C m-2. This should be the sum of Litter_flux and Rootlitter_flux"
-99,Ndep,"Annual nitrogen deposition, g N m-2"
-100,LAI,"Leaf area index at site, m2 m-2. Hemispheric (one-sided) if possible"
-101,BA,"Basal area at site, m2 ha-1 "
-102,C_veg_total,"Total carbon in vegetation, g C m-2. This should be the sum of C_AG and C_BG. For this and all 'C_' fields, biomass is converted to carbon using a ratio of 0.5 unless study-specific values are available"
-103,C_AG,"Total carbon in aboveground vegetation, g C m-2"
-104,C_BG,"Total carbon in belowground vegetation, g C m-2"
-105,C_CR,"Total carbon in coarse roots, g C m-2"
-106,C_FR,"Total carbon in fine roots, g C m-2"
-107,C_litter,"Total carbon in standing litter, g C m-2"
-108,C_soilmineral,"Total carbon in soil organic matter, g C m-2"
-109,C_soildepth,"Depth to which soil C recorded, cm"
-110,Notes,Notes
+63,GPP,"Annual gross primary production at site, g C m-2"
+64,ER,"Annual ecosystem respiration at site, g C m-2"
+65,NEP,"Annual net ecosystem production at site, g C m-2"
+66,NPP,"Annual net primary production at site, g C m-2"
+67,ANPP,"Annual aboveground NPP at site, g C m-2"
+68,BNPP,"Annual belowground NPP at site, g C m-2"
+69,NPP_FR,"Annual fine root NPP at site, g C m-2"
+70,TBCA,"Total belowground carbon allocation at site, g C m-2"
+71,Litter_flux,"Annual aboveground litter flux, g C m-2. This is reported very inconsistently (leaf only, leaf and fine woody material, all material, etc). Generally this should not include large woody material"
+72,Rootlitter_flux,"Annual belowground litter flux, g C m-2"
+73,TotDet_flux,"Annual total litter flux, g C m-2. This should be the sum of Litter_flux and Rootlitter_flux"
+74,Ndep,"Annual nitrogen deposition, g N m-2"
+75,LAI,"Leaf area index at site, m2 m-2. Hemispheric (one-sided) if possible"
+76,BA,"Basal area at site, m2 ha-1 "
+77,C_veg_total,"Total carbon in vegetation, g C m-2. This should be the sum of C_AG and C_BG. For this and all 'C_' fields, biomass is converted to carbon using a ratio of 0.5 unless study-specific values are available"
+78,C_AG,"Total carbon in aboveground vegetation, g C m-2"
+79,C_BG,"Total carbon in belowground vegetation, g C m-2"
+80,C_CR,"Total carbon in coarse roots, g C m-2"
+81,C_FR,"Total carbon in fine roots, g C m-2"
+82,C_litter,"Total carbon in standing litter, g C m-2"
+83,C_soilmineral,"Total carbon in soil organic matter, g C m-2"
+84,C_soildepth,"Depth to which soil C recorded, cm"
+85,Notes,Notes
