@@ -67,24 +67,10 @@ check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should 
     message(paste("- in records:", paste(which(!inlabs), collapse = " ")))	
   }
 }
-check_fieldnames <- function(d, d_info) {
-  fnames <- as.character(d_info[ d_info[, 2] !=  "", 2 ]) # Names in the srdb-data_fields.txt file
-  ndb <- names(d)
-  
-  if(all(ndb == fnames)) {
-    printlog("All names match!")
-  } else {
-    printlog("Following names do not match between field descriptions file and database:")
-    mismatch <- ndb !=  fnames
-    warning(c(rownumber = which(mismatch), data = ndb[ which(mismatch) ],
-              descrip = fnames[ which(mismatch) ]))
-  }
-}
 
 
 printlog("-----------------------------------")
 printlog("Error checking:")
-check_fieldnames(srdb, srdb_info)
 
 with(srdb, {
   check_bounds(Study_number, c(1, 19999))
