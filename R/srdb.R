@@ -67,83 +67,13 @@ check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should 
     message(paste("- in records:", paste(which(!inlabs), collapse = " ")))	
   }
 }
-check_fieldnames <- function(d, d_info) {
-  fnames <- as.character(d_info[ d_info[, 2] !=  "", 2 ]) # Names in the srdb-data_fields.txt file
-  ndb <- names(d)
-  
-  if(all(ndb == fnames)) {
-    printlog("All names match!")
-  } else {
-    printlog("Following names do not match between field descriptions file and database:")
-    mismatch <- ndb !=  fnames
-    warning(c(rownumber = which(mismatch), data = ndb[ which(mismatch) ],
-              descrip = fnames[ which(mismatch) ]))
-  }
-}
 
 
 printlog("-----------------------------------")
 printlog("Error checking:")
-check_fieldnames(srdb, srdb_info)
 
 with(srdb, {
-  check_bounds(Study_number, c(1, 19999))
-  study_number_matches <- srdb$Study_number %in% srdb_studies$Study_number
-  if(any(!study_number_matches)) {
-    warning("Study numbers not in studies file: ", srdb$Study_number[!study_number_matches])    
-  }
-  check_bounds(Study_midyear, c(1960, 2018))
-  check_bounds(YearsOfData, c(1, 99))
-  check_bounds(Latitude, c(-90, 90))
-  check_bounds(Longitude, c(-180, 180))
-  check_bounds(Elevation, c(0, 7999))
-  check_bounds(Age_ecosystem, c(0, 999))
-  check_bounds(Age_disturbance, c(0, 999))
-  unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
-  if(any(unmanaged_ag)) {
-    warning("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
-  }
-  check_labels(Soil_drainage, c("Dry", "Wet", "Medium", "Mixed", ""))
-  check_bounds(Soil_BD, c(0.01, 99.9))
-  check_bounds(Soil_CN, c(0.01, 99.9))
-  check_bounds(Soil_sand, c(0.0, 999.9))
-  check_bounds(Soil_silt, c(0.0, 999.9))
-  check_bounds(Soil_clay, c(0.0, 999.9))
-  check_bounds(MAT, c(-30, 40))
-  check_bounds(MAP, c(0, 9999))
-  check_bounds(PET, c(0, 9999))
-  check_bounds(Study_temp, c(-30, 40))
-  check_bounds(Study_precip, c(0, 9999))
-  # TODO: meas_method one of a few values
-  check_bounds(Meas_interval, c(0.01, 365))
-  check_bounds(Annual_coverage, c(0.01, 1))
-  # TODO: Partition_method one of a few values
-  
-  check_bounds(Rs_annual, c(-200, 5500))
-  check_bounds(Rs_annual_err, c(0, 5500))
-  check_bounds(Rs_interann_err, c(0, 5500))
-  check_bounds(Rs_max, c(0, 100))
-  check_bounds(Rs_maxday, c(1, 365))
-  check_bounds(Rs_min, c(-1, 100))
-  check_bounds(Rs_minday, c(1, 365))
-  check_lesseq(Rs_min, Rs_max)
-  # TODO: check following don't exceed Rs_annual
-  check_bounds(Rlitter_annual, c(0, 5000))
-  check_bounds(Ra_annual, c(0, 5000))
-  check_bounds(Rh_annual, c(0, 5000))
-  check_lesseq(Rlitter_annual, Rs_annual)
-  check_lesseq(Ra_annual, Rs_annual)
-  check_lesseq(Rh_annual, Rs_annual)
-  check_bounds(RC_annual, c(0, 1))
-  check_bounds(Rs_spring, c(0, 100))
-  check_bounds(Rs_summer, c(0, 100))
-  check_bounds(Rs_autumn, c(0, 100))
-  check_bounds(Rs_winter, c(0, 100))
-  check_bounds(Rs_growingseason, c(0, 100))
-  check_bounds(Rs_wet, c(0, 100))
-  check_bounds(Rs_dry, c(0, 100))
-  check_bounds(RC_seasonal, c(0, 1))
-  # TODO: RC_season one of a few values
+
   
   check_labels(Temp_effect, c("Positive", "Negative", "None", "Mixed", ""))
   check_numeric(Model_temp_min)
@@ -172,36 +102,6 @@ with(srdb, {
   check_numeric(Q10_other2_temp_max)
   check_lesseq(Q10_other2_temp_min, Q10_other2_temp_max)
   
-  check_bounds(GPP, c(0, 9999))
-  check_bounds(ER, c(0, 9999))
-  check_bounds(NEP, c(-9999, 9999))
-  check_bounds(NPP, c(0, 9999))
-  check_bounds(ANPP, c(0, 9999))
-  check_bounds(BNPP, c(0, 9999))
-  check_bounds(NPP_FR, c(0, 9999))
-  check_lesseq(ANPP, NPP)
-  check_lesseq(BNPP, NPP)
-  check_lesseq(NPP_FR, BNPP)
-  
-  check_bounds(TBCA, c(0, 9999))
-  check_bounds(Litter_flux, c(0, 9999))
-  check_bounds(Rootlitter_flux, c(0, 9999))
-  check_bounds(TotDet_flux, c(0, 9999))
-  check_lesseq(Litter_flux + Rootlitter_flux, TotDet_flux)
-  
-  check_bounds(Ndep, c(0, 999))
-  check_bounds(LAI, c(0, 99))
-  check_bounds(BA, c(0, 999))
-  check_bounds(C_veg_total, c(0, 99999))
-  check_bounds(C_AG, c(0, 999999))
-  check_bounds(C_BG, c(0, 99999))
-  check_bounds(C_CR, c(0, 99999))
-  check_bounds(C_FR, c(0, 99999))
-  check_lesseq(C_CR + C_FR, C_BG)
-  check_lesseq(C_AG + C_BG, C_veg_total)	
-  check_bounds(C_litter, c(0, 99999))
-  check_bounds(C_soilmineral, c(0, 999999))
-  check_bounds(C_soildepth, c(0, 200))
   
   # Outliers
 })
