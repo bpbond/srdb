@@ -201,15 +201,19 @@ with(srdb, {
 
 message("------------------------------------------------------ land check")
 # Check whether studies are all on land or not
-library(raster)
-srdb_spatial <- subset(srdb, !is.na(Latitude) & !is.na(Longitude))
-sp <- SpatialPoints(cbind(srdb_spatial$Longitude, srdb_spatial$Latitude))
-landmask <- brick("R/fractional_land.0.5-deg.nc")
-srdb_spatial$landfrac <- extract(rotate(raster(landmask, 1)), sp)
-srdb_spatial$landfrac_cut <- cut(srdb_spatial$land, 4)
 
-message("Checking points fall on land...")
-if(sum(srdb_spatial$landfrac <= 0.1, na.rm = TRUE)) {
-  notonland <- srdb_spatial$Record_number[srdb_spatial$landfrac < 0.05]
-  message(paste("- low-land records:", paste(notonland, collapse = " ")))
-}
+# TODO: having trouble installing ncdf4 on Travis, will deal with it later
+# Commenting out the following for now
+
+# library(raster)
+# srdb_spatial <- subset(srdb, !is.na(Latitude) & !is.na(Longitude))
+# sp <- SpatialPoints(cbind(srdb_spatial$Longitude, srdb_spatial$Latitude))
+# landmask <- brick("R/fractional_land.0.5-deg.nc")
+# srdb_spatial$landfrac <- extract(rotate(raster(landmask, 1)), sp)
+# srdb_spatial$landfrac_cut <- cut(srdb_spatial$land, 4)
+# 
+# message("Checking points fall on land...")
+# if(sum(srdb_spatial$landfrac <= 0.1, na.rm = TRUE)) {
+#   notonland <- srdb_spatial$Record_number[srdb_spatial$landfrac < 0.05]
+#   message(paste("- low-land records:", paste(notonland, collapse = " ")))
+# }
