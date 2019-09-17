@@ -1,3 +1,6 @@
+# Basic; we don't need much, just to run sanity checks on database
+# Ben Bond-Lamberty 2019-09-17
+
 language: r
 
 install:
