@@ -1,0 +1,7 @@
+language: r
+
+install:
+    - Rscript R/install_packages.R
+
+script:
+    - Rscript R/srdb_check.R
