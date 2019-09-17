@@ -3,8 +3,8 @@
 
 language: r
 
-r_binary_packages:
-    - ncdf4
+apt-packages:
+    - netcdf-dev
 
 install:
     - Rscript R/install_packages.R

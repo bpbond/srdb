@@ -1,4 +1,5 @@
 # Install any needed packages
 
 install.packages("raster")
-#install.packages("ncdf4")
+
+install.packages("ncdf4")
