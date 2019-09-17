@@ -3,6 +3,9 @@
 
 language: r
 
+r_binary_packages:
+    - ncdf4
+
 install:
     - Rscript R/install_packages.R
 
