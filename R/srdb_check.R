@@ -1,51 +1,41 @@
-# Run basic checks on SRDB data
-# BBL 2019-09-14
+# Run checks on SRDB data for consistency, columns types, out of bounds, etc.
+# BBL 2019-09-17
 
 
-# -----------------------------------------------------------------------------
-# Logging function
-printlog <- function(msg, ..., ts = TRUE, cr = TRUE) {
-  if(ts) cat(date(), " ")
-  cat(msg, ...)
-  if(cr) cat("\n")
-}
+# Helper functions ---------------------------------------------------------
 
-# -----------------------------------------------------------------------------
-# Error checking
-
-# Helper functions to check various field attributes
 check_numeric <- function(d, dname = deparse(substitute(d))) { 
-  printlog("Checking", dname, "is numeric")
+  message("Checking ", dname, " is numeric")
   if(!is.numeric(d)) {
-    message(paste(dname, "is not numeric"))
+    warning(paste(dname, " is not numeric"))
     d[ d == "" ] <- "0"	# don't want blanks to be listed below
-    message(paste("- in records:", paste(which(is.na(as.numeric(d))), collapse = " ")))
+    message(paste("- in records: ", paste(which(is.na(as.numeric(d))), collapse = " ")))
   }
   invisible(is.numeric(d))
 }
 check_bounds <- function(d, lim, dname = deparse(substitute(d))) { 	# d should be within lim
   if(check_numeric(d, dname)) {
-    printlog("Checking", dname, "in bounds (", lim[ 1 ], ",", lim[ 2 ], ")")
+    message("Checking ", dname, " in bounds (", lim[ 1 ], ",", lim[ 2 ], ")")
     oob <- d < lim[ 1 ] | d > lim[ 2 ]
     if(any(oob, na.rm = TRUE)) {
-      message(paste(dname, "out of bounds (", lim[ 1 ], ",", lim[ 2 ], ")"))
-      message(paste("- in records:", paste(which(oob), collapse = " ")))
+      message(paste(dname, " out of bounds (", lim[ 1 ], ",", lim[ 2 ], ")"))
+      message(paste("- in records: ", paste(which(oob), collapse = " ")))
     }
   }
 }
 check_lesseq <- function(d1, d2) { 	# d1 should be < =  d2
   greater <- d1 > d2
   if(any(greater, na.rm = TRUE)) {
-    message(paste(deparse(substitute(d1)), "greater than", deparse(substitute(d2))))
-    message(paste("- in records:", paste(which(greater), collapse = " ")))
+    message(paste(deparse(substitute(d1)), " greater than ", deparse(substitute(d2))))
+    message(paste("- in records: ", paste(which(greater), collapse = " ")))
   }
 }
 check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should be ascending range
-  printlog("Checking", dname, "in (", paste(labs, collapse = ", "), ")")
+  message("Checking ", dname, "in (", paste(labs, collapse = ", "), ")")
   inlabs <- d %in% labs
   if(any(!inlabs, na.rm = TRUE)) {
-    message(paste(dname, "not in labels", paste(labs, collapse = " ")))
-    message(paste("- in records:", paste(which(!inlabs), collapse = " ")))	
+    message(paste(dname, " not in labels ", paste(labs, collapse = " ")))
+    message(paste("- in records: ", paste(which(!inlabs), collapse = " ")))	
   }
 }
 check_fieldnames <- function(d, d_info) {
@@ -53,9 +43,9 @@ check_fieldnames <- function(d, d_info) {
   ndb <- names(d)
   
   if(all(ndb == fnames)) {
-    printlog("All names match between data and info files!")
+    message("All names match between data and info files!")
   } else {
-    printlog("Following names do not match between field descriptions file and database:")
+    message("Following names do not match between field descriptions file and database:")
     mismatch <- ndb !=  fnames
     warning(c(rownumber = which(mismatch), data = ndb[ which(mismatch) ],
               descrip = fnames[ which(mismatch) ]))
@@ -63,38 +53,23 @@ check_fieldnames <- function(d, d_info) {
 }
 
 
-# -----------------------------------------------------------------------------
-# Main program
+# Main --------------------------------------------------------------------
 
-printlog("Welcome to srdb.R")
+message("Welcome to srdb.R")
 
-printlog("Reading data file...")
+message("Reading data file...")
 srdb <- read.csv("srdb-data.csv", stringsAsFactors = FALSE)
-printlog("Rows =", nrow(srdb), "columns =", ncol(srdb))
+message("Rows = ", nrow(srdb), ", columns = ", ncol(srdb))
 
-printlog("Reading fields data file...")
+message("Reading fields data file...")
 srdb_info <- read.csv("srdb-data_fields.txt", sep = ",", comment.char = "#", stringsAsFactors = FALSE)
-printlog("Rows =", nrow(srdb_info), "columns =", ncol(srdb_info))
+message("Rows = ", nrow(srdb_info), ", columns = ", ncol(srdb_info))
 srdb_info <- srdb_info[-3] # remove descriptions
 
-printlog("Reading studies data file...")
+message("Reading studies data file...")
 srdb_studies <- read.csv("srdb-studies.csv", stringsAsFactors = FALSE)
-printlog("Rows =", nrow(srdb_studies), "columns =", ncol(srdb_studies))
+message("Rows = ", nrow(srdb_studies), ", columns = ", ncol(srdb_studies))
 
-
-# -----------------------------------------------------------------------------
-# `Record_number` links tables and provides reproducibility between versions.
- 
-printlog("Checking Record_number")
-rn_nas <- which(is.na(srdb$Record_number))
-if(length(rn_nas)) {
-  warning("There are ", length(rn_nas), " empty (NA) Record_number fields")
-}
-
-rn_dupes <- which(duplicated(srdb$Record_number))
-if(length(rn_dupes)) {
-  warning("There are ", length(rn_dupes), " duplicated Record_number fields")
-}
 
 # Commented out for now--not sure if duplicated rows are allowed
 #dupes <- which(duplicated(srdb[-1]))
@@ -102,28 +77,37 @@ if(length(rn_dupes)) {
 #  warning("There are ", length(dupes), " duplicated rows")
 #}
 
-# -----------------------------------------------------------------------------
-# The `Study_number` field links the data and studies files.
 
-printlog("Checking Study_number")
-study_number_matches <- srdb$Study_number %in% srdb_studies$Study_number
-if(any(!study_number_matches)) {
-  warning("There are unknown Study_number values")
-}
+# srdb-info.txt ---------------------------------------------------------
 
-
-# -----------------------------------------------------------------------------
 # The `srdb-info.txt` file should describe all fields.
-
-# TODO: re-enable
-# check_fieldnames(srdb, srdb_info)
+check_fieldnames(srdb, srdb_info)
 
 
-# -----------------------------------------------------------------------------
-# Field checks
+# Field checks ----------------------------------------------------------
 
 with(srdb, {
-	check_bounds(Study_midyear, c(1960, 2018))
+  message("------------------------------------------------------ srdb-data.csv")
+
+  # `Record_number` links tables and provides reproducibility between versions.
+  check_numeric(Record_number)
+  rn_nas <- which(is.na(srdb$Record_number))
+  if(length(rn_nas)) {
+    warning("There are ", length(rn_nas), " empty (NA) Record_number fields")
+  }
+  rn_dupes <- which(duplicated(srdb$Record_number))
+  if(length(rn_dupes)) {
+    warning("There are ", length(rn_dupes), " duplicated Record_number fields")
+  }
+  
+  # The `Study_number` field links the data and studies files.
+  check_numeric(Study_number)
+  study_number_matches <- srdb$Study_number %in% srdb_studies$Study_number
+  if(any(!study_number_matches)) {
+    warning("There are unknown Study_number values")
+  }
+  
+  check_bounds(Study_midyear, c(1960, 2018))
 	check_bounds(YearsOfData, c(1, 99))
 	check_bounds(Latitude, c(-90, 90))
 	check_bounds(Longitude, c(-180, 180))
@@ -212,5 +196,24 @@ with(srdb, {
 	check_bounds(C_soilmineral, c(0, 999999))
 	check_bounds(C_soildepth, c(0, 200))
 
- 
 })
+
+
+message("------------------------------------------------------ land check")
+# Check whether studies are all on land or not
+
+# TODO: having trouble installing ncdf4 on Travis, will deal with it later
+# Commenting out the following for now
+
+# library(raster)
+# srdb_spatial <- subset(srdb, !is.na(Latitude) & !is.na(Longitude))
+# sp <- SpatialPoints(cbind(srdb_spatial$Longitude, srdb_spatial$Latitude))
+# landmask <- brick("R/fractional_land.0.5-deg.nc")
+# srdb_spatial$landfrac <- extract(rotate(raster(landmask, 1)), sp)
+# srdb_spatial$landfrac_cut <- cut(srdb_spatial$land, 4)
+# 
+# message("Checking points fall on land...")
+# if(sum(srdb_spatial$landfrac <= 0.1, na.rm = TRUE)) {
+#   notonland <- srdb_spatial$Record_number[srdb_spatial$landfrac < 0.05]
+#   message(paste("- low-land records:", paste(notonland, collapse = " ")))
+# }
