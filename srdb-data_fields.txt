@@ -10,7 +10,7 @@ Field_number,Field_name,Field_definition
 6,Quality_flag,"Quality control. Quality control flags include Q0 (default/none), Q01 (estimated from figure), Q02 (data from another study), Q03 (data estimated-other), Q04 (potentially useful future data), Q10 (potential problem with data), Q11 (suspected problem with data), Q12 (known problem with data), Q13 (duplicate?), Q14 (inconsistency). Further details can generally be found in the notes field (#105 below)"
 7,Contributor,Data contributor
 #
-# Site and measurement data
+# Site data
 #
 8,Country,Country
 9,Region,State/province/region
@@ -43,56 +43,61 @@ Field_number,Field_name,Field_definition
 36,PET,"Reported potential evapotranspiration, mm"
 37,Study_temp,"Annual temperature in year of study, deg C"
 38,Study_precip,"Annual precipitation in year study of study, mm"
+#
+# Measurement data
+#
 39,Meas_method,CO2 measurement method
-40,Meas_interval,"Mean interval between Rs measurements, days"
-41,Annual_coverage,"Annual coverage of Rs measurements, fraction (1.0=full year)"
-42,Partition_method,"Method used to partition RS source fluxes, following Bond-Lamberty et al. (2004)"
+40,Collar_depth,"Depth of collar insertion, cm"
+41,Chamber_area,"Area of measurement chamber, cm2"
+42,Meas_interval,"Mean interval between Rs measurements, days"
+43,Annual_coverage,"Annual coverage of Rs measurements, fraction (1.0=full year)"
+44,Partition_method,"Method used to partition RS source fluxes, following Bond-Lamberty et al. (2004)"
 #
 # Annual and seasonal RS fluxes
 #
-43,Rs_annual,"Annual C flux from soil respiration, g C m-2. This can either be reported directly by the study, calculated from reported mean fluxes, or estimated from a figure (in which case a quality control note is made, field 6)"
-44,Rs_annual_err,"Error (typically plot-to-plot) for Rs_annual, g C m-2"
-45,Rs_interann_err,"Interannual error reported for Rs_annual, g C m-2. This is occasionally reported by authors, or defined as the standard deviation between year i and year i+1 (N=2)"
-46,Rs_max,"Maximum RS flux, µmol m-2 s-1"
-47,Rs_maxday,Maximum RS flux day of year
-48,Rs_min,"Minimum RS flux, µmol m-2 s-1"
-49,Rs_minday,Minimum RS flux day of year
-50,Rlitter_annual,"Annual RS flux from litter, g C m-2"
-51,Ra_annual,"Annual autotrophic RS flux, g C m-2"
-52,Rh_annual,"Annual heterotrophic RS flux, g C m-2"
-53,RC_annual,"Root contribution to Rs_annual, annual fraction"
-54,Rs_spring,"Mean spring RS flux, µmol m-2 s-1. Seasons are defined by authors"
-55,Rs_summer,"Mean summer RS flux, µmol m-2 s-1"
-56,Rs_autumn,"Mean autumn RS flux, µmol m-2 s-1"
-57,Rs_winter,"Mean winter RS flux, µmol m-2 s-1"
-58,Rs_growingseason,"Mean growing RS flux, µmol m-2 s-1"
-59,Rs_wet,"Mean wet season RS flux, µmol m-2 s-1 "
-60,Rs_dry,"Mean dry season RS flux, µmol m-2 s-1"
-61,RC_seasonal,"Root contribution to seasonal RS, fraction"
-62,RC_season,Season of RC_seasonal
+45,Rs_annual,"Annual C flux from soil respiration, g C m-2. This can either be reported directly by the study, calculated from reported mean fluxes, or estimated from a figure (in which case a quality control note is made, field 6)"
+46,Rs_annual_err,"Error (typically plot-to-plot) for Rs_annual, g C m-2"
+47,Rs_interann_err,"Interannual error reported for Rs_annual, g C m-2. This is occasionally reported by authors, or defined as the standard deviation between year i and year i+1 (N=2)"
+48,Rs_max,"Maximum RS flux, µmol m-2 s-1"
+49,Rs_maxday,Maximum RS flux day of year
+50,Rs_min,"Minimum RS flux, µmol m-2 s-1"
+41,Rs_minday,Minimum RS flux day of year
+52,Rlitter_annual,"Annual RS flux from litter, g C m-2"
+53,Ra_annual,"Annual autotrophic RS flux, g C m-2"
+54,Rh_annual,"Annual heterotrophic RS flux, g C m-2"
+55,RC_annual,"Root contribution to Rs_annual, annual fraction"
+56,Rs_spring,"Mean spring RS flux, µmol m-2 s-1. Seasons are defined by authors"
+57,Rs_summer,"Mean summer RS flux, µmol m-2 s-1"
+58,Rs_autumn,"Mean autumn RS flux, µmol m-2 s-1"
+59,Rs_winter,"Mean winter RS flux, µmol m-2 s-1"
+60,Rs_growingseason,"Mean growing RS flux, µmol m-2 s-1"
+61,Rs_wet,"Mean wet season RS flux, µmol m-2 s-1 "
+62,Rs_dry,"Mean dry season RS flux, µmol m-2 s-1"
+63,RC_seasonal,"Root contribution to seasonal RS, fraction"
+64,RC_season,Season of RC_seasonal
 #
 # Ancillary pools and fluxes
 #
-63,GPP,"Annual gross primary production at site, g C m-2"
-64,ER,"Annual ecosystem respiration at site, g C m-2"
-65,NEP,"Annual net ecosystem production at site, g C m-2"
-66,NPP,"Annual net primary production at site, g C m-2"
-67,ANPP,"Annual aboveground NPP at site, g C m-2"
-68,BNPP,"Annual belowground NPP at site, g C m-2"
-69,NPP_FR,"Annual fine root NPP at site, g C m-2"
-70,TBCA,"Total belowground carbon allocation at site, g C m-2"
-71,Litter_flux,"Annual aboveground litter flux, g C m-2. This is reported very inconsistently (leaf only, leaf and fine woody material, all material, etc). Generally this should not include large woody material"
-72,Rootlitter_flux,"Annual belowground litter flux, g C m-2"
-73,TotDet_flux,"Annual total litter flux, g C m-2. This should be the sum of Litter_flux and Rootlitter_flux"
-74,Ndep,"Annual nitrogen deposition, g N m-2"
-75,LAI,"Leaf area index at site, m2 m-2. Hemispheric (one-sided) if possible"
-76,BA,"Basal area at site, m2 ha-1 "
-77,C_veg_total,"Total carbon in vegetation, g C m-2. This should be the sum of C_AG and C_BG. For this and all 'C_' fields, biomass is converted to carbon using a ratio of 0.5 unless study-specific values are available"
-78,C_AG,"Total carbon in aboveground vegetation, g C m-2"
-79,C_BG,"Total carbon in belowground vegetation, g C m-2"
-80,C_CR,"Total carbon in coarse roots, g C m-2"
-81,C_FR,"Total carbon in fine roots, g C m-2"
-82,C_litter,"Total carbon in standing litter, g C m-2"
-83,C_soilmineral,"Total carbon in soil organic matter, g C m-2"
-84,C_soildepth,"Depth to which soil C recorded, cm"
-85,Notes,Notes
+65,GPP,"Annual gross primary production at site, g C m-2"
+66,ER,"Annual ecosystem respiration at site, g C m-2"
+67,NEP,"Annual net ecosystem production at site, g C m-2"
+68,NPP,"Annual net primary production at site, g C m-2"
+69,ANPP,"Annual aboveground NPP at site, g C m-2"
+70,BNPP,"Annual belowground NPP at site, g C m-2"
+71,NPP_FR,"Annual fine root NPP at site, g C m-2"
+72,TBCA,"Total belowground carbon allocation at site, g C m-2"
+73,Litter_flux,"Annual aboveground litter flux, g C m-2. This is reported very inconsistently (leaf only, leaf and fine woody material, all material, etc). Generally this should not include large woody material"
+74,Rootlitter_flux,"Annual belowground litter flux, g C m-2"
+75,TotDet_flux,"Annual total litter flux, g C m-2. This should be the sum of Litter_flux and Rootlitter_flux"
+76,Ndep,"Annual nitrogen deposition, g N m-2"
+77,LAI,"Leaf area index at site, m2 m-2. Hemispheric (one-sided) if possible"
+78,BA,"Basal area at site, m2 ha-1 "
+79,C_veg_total,"Total carbon in vegetation, g C m-2. This should be the sum of C_AG and C_BG. For this and all 'C_' fields, biomass is converted to carbon using a ratio of 0.5 unless study-specific values are available"
+80,C_AG,"Total carbon in aboveground vegetation, g C m-2"
+81,C_BG,"Total carbon in belowground vegetation, g C m-2"
+82,C_CR,"Total carbon in coarse roots, g C m-2"
+83,C_FR,"Total carbon in fine roots, g C m-2"
+84,C_litter,"Total carbon in standing litter, g C m-2"
+85,C_soilmineral,"Total carbon in soil organic matter, g C m-2"
+86,C_soildepth,"Depth to which soil C recorded, cm"
+87,Notes,Notes
