@@ -116,7 +116,7 @@ with(srdb, {
 	check_bounds(Age_disturbance, c(0, 999))
 	unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
 	if(any(unmanaged_ag)) {
-		warning("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
+		stop("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
 	}
 	check_labels(Soil_drainage, c("Dry", "Wet", "Medium", "Mixed", ""))
 	check_bounds(Soil_BD, c(0.01, 99.9))
