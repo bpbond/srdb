@@ -1,11 +1,11 @@
  **If you want a simple download**, click on the "Releases" tab above. There's also a version on the [ORNL DAAC](https://doi.org/10.3334/ORNLDAAC/1235).
 
- srdb
+srdb
 ====
 
 Global soil respiration database
 
-Last data update: 15 September 2019
+Last data update: 3 November 2019
 
 About srdb
 -----------------------
@@ -35,6 +35,7 @@ Changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
+20191103 | New fields (`Collar_depth`, `Chamber_area`, `Time_of_day`); first data from interns Darlin P. and  Jason M.
 20190915 | Added lots of new data entered by [@rbcmrchs](https://github.com/rbcmrchs) and [@jinshijian](https://github.com/jinshijian); corrections to older data; broke equations columns into separate, new `srdb-equations.csv` file.
 20190306 | Many corrections to longitude and latitude data; see issue #22. Thanks to [@jinshijian](https://github.com/jinshijian).
 20181101 | Fixed a number of bad sand:silt:clay values, duplicate records, and other problems. Thanks to [@ValentineHerr](https://github.com/ValentineHerr) of SI, and Shafer Powell and Debjani Deb of [ORNL DAAC](https://daac.ornl.gov).
