@@ -1,0 +1,210 @@
+---
+title: "SRDB_DGRsD_Integrate"
+author: "Jinshi"
+date: "July 22, 2019"
+output: html_document
+---
+
+```{r load package, message=FALSE, include=FALSE, echo=FALSE}
+# https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them/19873732
+
+package_list <- c("cowplot","data.table","dplyr","ggplot2", "lubridate"
+                  ,"kableExtra","knitr","ggmap","maps","mapdata","tidyr","sp","ggpubr")
+package_new <- package_list[!(package_list %in% installed.packages()[,"Package"])]
+if(length(package_new)) install.packages(package_new)
+
+library(cowplot)
+library(data.table)
+library(dplyr)
+library(ggplot2)
+theme_set(theme_bw())
+library(lubridate)
+library(kableExtra)
+library(knitr)
+library("ggpubr")
+library(ggmap)
+library(maps)
+library(mapdata)
+library(tidyr)
+# install.packages("leaflet")
+library("leaflet")
+library(sp)
+# Source all needed functions
+source('functions.R')
+
+```
+
+
+
+```{r preliminaries, message=FALSE, include=FALSE, echo=FALSE, cache=TRUE}
+# Set chunks defaults; these options will be applied to all subsequent chunks
+knitr::opts_chunk$set(message = TRUE, include = TRUE, echo = FALSE,
+                      fig.height = 4, fig.width = 8)
+# Constants
+OUTPUT_DIR		<- "outputs/"
+DATA_DIR <- 'data'
+SRDB_DIR <- 'E:/srdb/'
+# Create output and log folders if they do not exist
+if(!file.exists(OUTPUT_DIR)) dir.create(OUTPUT_DIR)
+if(!file.exists(DATA_DIR)) dir.create(DATA_DIR)
+# install.packages('kableExtra')
+# Load required packages
+```
+
+```{r load data}
+# load data
+DGRsD <- read.csv('DGRsD.csv', header = TRUE)
+srdbv4 <- read.csv(paste0(SRDB_DIR,"srdb-data.csv"), header = TRUE)
+srdbv4$Site_ID <- as.factor(srdbv4$Site_ID)
+srdb_bahn <- read.csv(paste0(DATA_DIR, "/MGRsD-data-v4-TSoil.csv"), header = TRUE)
+```
+
+
+## Data check 
+```{r check Site_ID}
+# check there are no lower case character in Site_ID column for bother srdb and DGRsD
+DGRsD %>% select (Study_number, Site_ID) %>% filter (Site_ID %in% letters )
+srdbv4 %>% select (Study_number, Site_ID) %>% filter (Site_ID %in% letters )
+```
+
+
+## Data check 1: Find out those studies in DGRsD but not in SRDB
+```{r}
+# 14 studies not in srdb, need to add the information
+dgrsd_notin_srdb() 
+```
+
+## Data check 2: Find out those studies in SRDB but not in DGRsD
+```{r, results = 'hide' }
+srdb_notin_dgrsd() %>% arrange(Study_number) %>% unique()
+```
+
+
+## Data check 3: check the duplicate Site_ID in srdb
+```{r}
+# Idealy, every row in srdb_v4 should have a unique ID (which is the combine of study_number, measure_year, and site_ID)
+srdbv4 %>% select(Study_number, Study_midyear, Site_ID) %>% 
+  count(Study_number, Study_midyear, Site_ID, sort = TRUE) %>% 
+  filter (n >= 2) %>% 
+  arrange(Study_number)
+```
+
+
+## Data check 4: check all countries and whether they have currect acronym
+```{r}
+srdbv4 %>% mutate(Country_acronym = substr(Site_ID, 1,2)) %>% 
+  select (Country) %>% unique() %>% count(Country, sort = TRUE)
+```
+
+
+```{r}
+DGRsD %>% mutate(Country_acronym = substr(Site_ID, 1,2)) %>% 
+  select (Country, Country_acronym) %>% unique() %>% count(Country, Country_acronym, sort = TRUE)
+```
+
+
+## Data check 5: Find out those Site_ID in DGRsD but not in SRDB 
+
+```{r}
+site_ID_check() %>% filter(is.na(srdb_ID)) %>% filter(Study_number %!in% dgrsd_notin_srdb()[,1]) 
+
+```
+
+## Data check 6: For those have more than 11 months Rs from DGRsD, comparing that with SRDB
+```{r}
+# Select sites with more than 10 months' Rs measurement, and get the mean
+srdb_vs_dgrsd <- function () {
+  DGRsD %>% select(Study_number, Site_ID, Measure_Month, RS_Norm) %>% 
+  group_by(Study_number, Site_ID, Measure_Month) %>% 
+  summarise(RS_mean = mean(RS_Norm)) %>% 
+  mutate(n_Month = n()) %>% 
+  filter(n_Month >= 10) %>% 
+  group_by(Study_number, Site_ID) %>% 
+  summarise(RS_annual_dgrsd = mean(RS_mean)) -> dgrsd_sum
+
+# Select sites and get the mean Rs value from srdb data
+  srdbv4 %>% select(Study_number, Site_ID, Rs_annual) %>% na.omit() %>% 
+  group_by(Study_number, Site_ID) %>% 
+  summarise(RS_annual_srdb = mean(Rs_annual)/365) -> srdb_sum
+
+# use inner join to combine Rs from srdb and dgrsd  
+  results <- inner_join(dgrsd_sum, srdb_sum, by=c("Study_number", "Site_ID"))
+  return(results)
+}
+
+srdb_vs_dgrsd <- srdb_vs_dgrsd()
+```
+
+
+
+
+```{r}
+srdb_vs_dgrsd %>% 
+  ggplot(aes(RS_annual_dgrsd, RS_annual_srdb)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  geom_abline(slope = 1, intercept = 0, col = "red", linetype = "dashed", size = 1.5)
+
+lm(RS_annual_srdb ~ RS_annual_dgrsd, data = srdb_vs_dgrsd) %>% summary()
+```
+
+
+
+```{r}
+# find out sites with big difference between SRDB and MGRsD
+srdb_vs_dgrsd %>% mutate(ratio = RS_annual_dgrsd / RS_annual_srdb) %>% arrange(ratio)
+```
+
+
+## Data check 7: check sites by contry (check latitude and longitude)
+```{r}
+srdbv4 %>% count(Country, sort = TRUE) 
+```
+
+```{r}
+lot_long_check(srdbv4, "USA")
+# srdbv4 %>% filter(Longitude > 0) %>% select(Study_number) %>% unique()
+lot_long_check(srdbv4, "China")
+
+lot_long_check(srdbv4, "Canada")
+lot_long_check(srdbv4, "Finland")
+lot_long_check(srdbv4, "Japan")
+lot_long_check(srdbv4, "Germany")
+```
+
+
+```{r}
+# check latitude and longitude in DGRsD but not in srdb, then srdb's lat and long can use that from dgrsd
+srdbv4 %>% filter(is.na(Site_ID)) %>% nrow()
+lat_long_check2 <- function () {
+  srdbv4 %>% filter(is.na(Latitude) | is.na(Longitude)) %>% select(Study_number) %>% unique() %>% arrange(Study_number) -> srdb
+  DGRsD %>% select(Study_number, Latitude, Longitude) %>% unique() -> mgrsd
+  
+  results <- left_join(srdb, mgrsd, by = c("Study_number"))
+  return(results)
+}
+
+lat_long_check2() %>% na.omit()
+
+```
+
+
+
+```{r}
+srdbv4 %>% count(Manipulation, sort = TRUE) 
+srdbv4 %>% count(Meas_method, sort = TRUE) 
+srdbv4 %>% count(Partition_method, sort = TRUE) 
+
+# questions
+srdbv4 %>% count(Biome, sort = TRUE) 
+srdbv4 %>% count(Ecosystem_state, sort = TRUE) 
+srdbv4 %>% count(Leaf_habit, sort = TRUE) 
+srdbv4 %>% count(Stage, sort = TRUE) 
+
+```
+
+
+
+
+
+
