@@ -35,7 +35,7 @@ Changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
-20200220 | Removed fields `Rs_max`, `Rs_maxday`, `Rs_min`, and `Rs_minday` from database; they haven't been used and are very inconsistent.
+20200220 | Removed fields `Rs_max`, `Rs_maxday`, `Rs_min`, and `Rs_minday` from database; they haven't been used and are very inconsistent. Added `Collar_height` and merged a bunch of new data for that fields as well as `Collar_depth`, `Chamber_area`, and `Time_of_day`.
 20191103 | New fields (`Collar_depth`, `Chamber_area`, `Time_of_day`); first data from interns Darlin P. and  Jason M.; data corrections by [@jinshijian](https://github.com/jinshijian)
 20190915 | Added lots of new data entered by [@rbcmrchs](https://github.com/rbcmrchs) and [@jinshijian](https://github.com/jinshijian); corrections to older data; broke equations columns into separate, new `srdb-equations.csv` file.
 20190306 | Many corrections to longitude and latitude data; see issue #22. Thanks to [@jinshijian](https://github.com/jinshijian).

@@ -132,6 +132,10 @@ with(srdb, {
 	# TODO: meas_method one of a few values
 	check_bounds(Meas_interval, c(0.01, 365))
 	check_bounds(Annual_coverage, c(0.01, 1))
+	check_bounds(Collar_height, c(0, 100))
+	check_bounds(Collar_depth, c(0, 20))
+	check_bounds(Chamber_area, c(1, 10000))
+	
 	# TODO: Partition_method one of a few values
 
 	check_bounds(Rs_annual, c(-200, 25000))
