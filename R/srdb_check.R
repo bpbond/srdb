@@ -137,11 +137,6 @@ with(srdb, {
 	check_bounds(Rs_annual, c(-200, 25000))
 	check_bounds(Rs_annual_err, c(0, 5500))
 	check_bounds(Rs_interann_err, c(0, 5500))
-	check_bounds(Rs_max, c(0, 100))
-	check_bounds(Rs_maxday, c(1, 365))
-	check_bounds(Rs_min, c(-1, 100))
-	check_bounds(Rs_minday, c(1, 365))
-	check_lesseq(Rs_min, Rs_max)
 	# TODO: check following don't exceed Rs_annual
 	check_bounds(Rlitter_annual, c(0, 5000))
 	check_bounds(Ra_annual, c(-16, 5000))
