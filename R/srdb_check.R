@@ -7,9 +7,9 @@
 check_numeric <- function(d, dname = deparse(substitute(d))) { 
   message("Checking ", dname, " is numeric")
   if(!is.numeric(d)) {
-    warning(paste(dname, " is not numeric"))
     d[ d == "" ] <- "0"	# don't want blanks to be listed below
-    message(paste("- in records: ", paste(which(is.na(as.numeric(d))), collapse = " ")))
+    stop(paste(dname, " is not numeric", 
+               paste("- in records: ", paste(which(is.na(as.numeric(d))), collapse = " "))))
   }
   invisible(is.numeric(d))
 }
@@ -39,16 +39,15 @@ check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should 
   }
 }
 check_fieldnames <- function(d, d_info) {
+  browser()
   fnames <- as.character(d_info[ d_info[, 2] !=  "", 2 ]) # Names in the srdb-data_fields.txt file
   ndb <- names(d)
   
-  if(all(ndb == fnames)) {
+  if(identical(sort(ndb), sort(fnames))) {
     message("All names match between data and info files!")
   } else {
-    message("Following names do not match between field descriptions file and database:")
-    mismatch <- ndb !=  fnames
-    warning(c(rownumber = which(mismatch), data = ndb[ which(mismatch) ],
-              descrip = fnames[ which(mismatch) ]))
+    diffs <- union(setdiff(ndb, fnames), setdiff(fnames, ndb))
+    stop("Following names do not match between field descriptions file and database:", paste(diffs, collapse = ", "))
   }
 }
 
@@ -132,6 +131,10 @@ with(srdb, {
 	# TODO: meas_method one of a few values
 	check_bounds(Meas_interval, c(0.01, 365))
 	check_bounds(Annual_coverage, c(0.01, 1))
+	check_bounds(Collar_height, c(0, 100))
+	check_bounds(Collar_depth, c(0, 20))
+	check_bounds(Chamber_area, c(1, 10000))
+	
 	# TODO: Partition_method one of a few values
 
 	check_bounds(Rs_annual, c(-200, 25000))
