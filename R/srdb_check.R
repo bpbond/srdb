@@ -31,7 +31,7 @@ check_lesseq <- function(d1, d2) { 	# d1 should be < =  d2
   }
 }
 check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should be ascending range
-  message("Checking ", dname, "in (", paste(labs, collapse = ", "), ")")
+  message("Checking ", dname, " in (", paste(labs, collapse = ", "), ")")
   inlabs <- d %in% labs
   if(any(!inlabs, na.rm = TRUE)) {
     message(paste(dname, " not in labels ", paste(labs, collapse = " ")))
@@ -39,7 +39,6 @@ check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should 
   }
 }
 check_fieldnames <- function(d, d_info) {
-  browser()
   fnames <- as.character(d_info[ d_info[, 2] !=  "", 2 ]) # Names in the srdb-data_fields.txt file
   ndb <- names(d)
   
@@ -69,17 +68,28 @@ message("Reading studies data file...")
 srdb_studies <- read.csv("srdb-studies.csv", stringsAsFactors = FALSE)
 message("Rows = ", nrow(srdb_studies), ", columns = ", ncol(srdb_studies))
 
+message("Reading studies info file...")
+srdb_studies_info <- read.csv("srdb-studies_fields.txt", sep = ",", comment.char = "#", stringsAsFactors = FALSE)
+message("Rows = ", nrow(srdb_studies), ", columns = ", ncol(srdb_studies))
 
 # Commented out for now--not sure if duplicated rows are allowed
-#dupes <- which(duplicated(srdb[-1]))
+#dupes <- which(duplicated(srdb[c(-1, -2)]))
 #if(length(dupes)) {
 #  warning("There are ", length(dupes), " duplicated rows")
 #}
+
+# Every study number in srdb-data should be in srdb-studies
+present <- srdb$Study_number %in% srdb_studies$Study_number
+if(any(!present)) {
+stop("Study_number values in srdb-data not found in srdb_studies: ",
+     paste(unique(srdb$Study_number[!present]), collapse = ", "))
+}
 
 
 # srdb-info.txt ---------------------------------------------------------
 
 # The `srdb-info.txt` file should describe all fields.
+message("------------------------------------------------------ srdb-info.txt")
 check_fieldnames(srdb, srdb_info)
 
 
@@ -113,6 +123,7 @@ with(srdb, {
 	check_bounds(Elevation, c(0, 7999))
 	check_bounds(Age_ecosystem, c(0, 999))
 	check_bounds(Age_disturbance, c(0, 999))
+	check_labels(Ecosystem_state, c("Managed", "Unmanaged", "Natural", ""))
 	unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
 	if(any(unmanaged_ag)) {
 		stop("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
@@ -132,7 +143,7 @@ with(srdb, {
 	check_bounds(Meas_interval, c(0.01, 365))
 	check_bounds(Annual_coverage, c(0.01, 1))
 	check_bounds(Collar_height, c(0, 100))
-	check_bounds(Collar_depth, c(0, 20))
+	check_bounds(Collar_depth, c(0, 100))
 	check_bounds(Chamber_area, c(1, 10000))
 	
 	# TODO: Partition_method one of a few values
@@ -215,3 +226,5 @@ message("------------------------------------------------------ land check")
 #   notonland <- srdb_spatial$Record_number[srdb_spatial$landfrac < 0.05]
 #   message(paste("- low-land records:", paste(notonland, collapse = " ")))
 # }
+
+message("All done.")
