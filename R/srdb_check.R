@@ -102,18 +102,18 @@ with(srdb, {
   check_numeric(Record_number)
   rn_nas <- which(is.na(srdb$Record_number))
   if(length(rn_nas)) {
-    warning("There are ", length(rn_nas), " empty (NA) Record_number fields")
+    stop("There are ", length(rn_nas), " empty (NA) Record_number fields")
   }
   rn_dupes <- which(duplicated(srdb$Record_number))
   if(length(rn_dupes)) {
-    warning("There are ", length(rn_dupes), " duplicated Record_number fields")
+    stop("There are ", length(rn_dupes), " duplicated Record_number fields")
   }
   
   # The `Study_number` field links the data and studies files.
   check_numeric(Study_number)
   study_number_matches <- srdb$Study_number %in% srdb_studies$Study_number
   if(any(!study_number_matches)) {
-    warning("There are unknown Study_number values")
+    stop("There are unknown Study_number values")
   }
   
   check_bounds(Study_midyear, c(1960, 2018))
