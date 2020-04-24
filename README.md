@@ -36,6 +36,7 @@ Changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
+20200424 | A variety of new data from the Russian-language literature; thanks to Nazar Kholod.
 20200409 | Ingest of LOTS of new data (through PY2017; `srdb-data.csv` goes from 7318 to 10311 rows) entered by [@jmanzon](https://github.com/jmanzon), [@darlinp](https://github.com/darlinp), and [@jinshijian](https://github.com/jinshijian).
 20200220 | Removed fields `Rs_max`, `Rs_maxday`, `Rs_min`, and `Rs_minday` from database; they haven't been used and are very inconsistent. Added `Collar_height` and merged a bunch of new data for that fields as well as `Collar_depth`, `Chamber_area`, and `Time_of_day`.
 20191103 | New fields (`Collar_depth`, `Chamber_area`, `Time_of_day`); first data from interns Darlin P. and  Jason M.; data corrections by [@jinshijian](https://github.com/jinshijian)
