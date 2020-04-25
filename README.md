@@ -1,11 +1,12 @@
- **If you want a simple download**, click on the "Releases" tab above. There's also a version on the [ORNL DAAC](https://doi.org/10.3334/ORNLDAAC/1235).
+ **If you want a simple download**, click on the "Releases" tab above. 
+ There's also a version on the [ORNL DAAC](https://doi.org/10.3334/ORNLDAAC/1235).
 
 srdb
 ====
 
 Global soil respiration database
 
-Last data update: 09 April 2020
+Last data update: 25 April 2020
 
 About srdb
 -----------------------
@@ -31,7 +32,7 @@ srdb-equations.csv			|	Temperature and moisture sensitivity equations
 srdb-studies_fields.txt		|	Metadata for the srdb-studies file
 srdb-studies.csv			|	Studies database
 
-Changelog
+Major changelog
 -----------------------
 
 Date	   	|	Change
@@ -60,11 +61,14 @@ Date	   	|	Change
 
 How to use these data
 -----------------------
-Read the documentation! There are a few fields to be especially careful of, especially "Quality_flag", "CO2_method" (e.g. many analyses will want to exclude soda lime measurements), "Manipulation" (you may want to filter to "None" to look at un-manipulated systems), "Ecosystem_state", and "Ecosystem_type" (agriculture is guaranteed to be disturbed).
+Read the documentation! There are a few fields to be especially careful of, especially "Quality_flag", 
+"CO2_method" (e.g. many analyses will want to exclude soda lime measurements), "Manipulation" (you may
+want to filter to "None" to look at un-manipulated systems), "Ecosystem_state", and "Ecosystem_type".
 
 How to get a publication
 -----------------------
-If you'd like to obtain a PDF of one of the database studies, open an issue or email Ben Bond-Lamberty, the maintainer. In either case please specify the study number.                                  
+If you'd like to obtain a PDF of one of the database studies, open an issue or email 
+Ben Bond-Lamberty, the maintainer. In either case please specify the study number.                                  
 
 How to cite these data
 -----------------------
