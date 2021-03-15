@@ -1,5 +1,5 @@
 This file contains exapnded descriptions or usage notes for a number of fields in the soil respiration database.
-Last updated: 23-Jan-2017
+Last updated: 15-Mar-2021
 
 ----------
 Latitude
