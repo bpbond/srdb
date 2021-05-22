@@ -77,7 +77,7 @@ This data set is **open**, and no co-authorship is required if you make use of i
 * Jian, Vargas, Anderson-Teixeira, Stell, Herrmann, Horn, Kholod, Manzon, Marchesi, Paredes, and Bond-Lamberty (2021). A restructured and updated global soil respiration database (SRDB-V5), *Earth Syst. Sci. Data* 13:255–267, 2021, doi: [10.5194/essd-13-255-2021](https://doi.org/10.5194/essd-13-255-2021).
 
 The older, original citation is:
-* Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, *Biogeosciences* 7:1321-1344, doi:[10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
+* Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, *Biogeosciences* 7:1321-1344, doi: [10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
 
 Analyses using these data should include the database version (i.e. the tag, such as "v20131218a", and ideally the git commit), download date, and URL. (At some point in the future, releases will include a DOI, too.)
 
