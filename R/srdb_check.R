@@ -138,6 +138,10 @@ with(srdb, {
 	if(any(pasture)) {
 	  stop("Pasture (should be managed grassland) in records: ", paste(srdb$Record_number[which(pasture)], collapse = " "))    
 	}
+	grassland <- srdb$Ecosystem_type %in% c("Steppe", "Meadow")
+	if(any(grassland)) {
+	  stop("Grassland synonym (should be grassland) in records: ", paste(srdb$Record_number[which(grassland)], collapse = " "))    
+	}
 	wetland <- srdb$Ecosystem_type %in% c("Swamp", "Marsh", "Bog")
 	if(any(wetland)) {
 	  stop("Wetland synonym (should be wetland) in records: ", paste(srdb$Record_number[which(wetland)], collapse = " "))    
