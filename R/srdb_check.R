@@ -124,10 +124,25 @@ with(srdb, {
 	check_bounds(Age_ecosystem, c(0, 999))
 	check_bounds(Age_disturbance, c(0, 999))
 	check_labels(Ecosystem_state, c("Managed", "Unmanaged", "Natural", ""))
+	
+	# Ecosystem_type is really varied, unfortunately
 	unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
 	if(any(unmanaged_ag)) {
 		stop("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
 	}
+	plantation <- srdb$Ecosystem_type == "Plantation"
+	if(any(plantation)) {
+	  stop("Plantation (should be managed forest) in records: ", paste(srdb$Record_number[which(plantation)], collapse = " "))    
+	}
+	pasture <- srdb$Ecosystem_type == "Pasture"
+	if(any(pasture)) {
+	  stop("Pasture (should be managed grassland) in records: ", paste(srdb$Record_number[which(pasture)], collapse = " "))    
+	}
+	wetland <- srdb$Ecosystem_type %in% c("Swamp", "Marsh", "Bog")
+	if(any(wetland)) {
+	  stop("Wetland synonym (should be wetland) in records: ", paste(srdb$Record_number[which(wetland)], collapse = " "))    
+	}
+
 	check_labels(Soil_drainage, c("Dry", "Wet", "Medium", "Mixed", ""))
 	check_bounds(Soil_BD, c(0.01, 99.9))
 	check_bounds(Soil_CN, c(0.01, 99.9))
