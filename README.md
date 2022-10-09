@@ -6,7 +6,7 @@ srdb
 
 Global soil respiration database
 
-Last data update: 13 May 2022
+Last data update: 09 October 2022
 
 About srdb
 -----------------------
@@ -37,6 +37,7 @@ Major changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
+20221009 | New 2018-2019 data entered by Elon Atlaw, Mahlet Dagnachew, and Emily Kang. 
 20210621 | Many (400+) corrections to location, time, ecosystem type, etc.; thanks to Ni Huang! See PR #126.
 20210522 | New 2017 data entered by Shoshi Hornum and Hope Ng.
 20200424 | A variety of new data from the Russian-language literature; thanks to Nazar Kholod.
