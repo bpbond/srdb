@@ -19,7 +19,7 @@ check_bounds <- function(d, lim, dname = deparse(substitute(d))) { 	# d should b
     oob <- d < lim[ 1 ] | d > lim[ 2 ]
     if(any(oob, na.rm = TRUE)) {
       message(paste(dname, " out of bounds (", lim[ 1 ], ",", lim[ 2 ], ")"))
-      message(paste("- in records: ", paste(which(oob), collapse = " ")))
+      message(paste("- in rows: ", paste(which(oob), collapse = " ")))
     }
   }
 }
@@ -27,7 +27,7 @@ check_lesseq <- function(d1, d2) { 	# d1 should be < =  d2
   greater <- d1 > d2
   if(any(greater, na.rm = TRUE)) {
     message(paste(deparse(substitute(d1)), " greater than ", deparse(substitute(d2))))
-    message(paste("- in records: ", paste(which(greater), collapse = " ")))
+    message(paste("- in rows: ", paste(which(greater), collapse = " ")))
   }
 }
 check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should be ascending range
@@ -140,7 +140,7 @@ with(srdb, {
 	}
 	grassland <- srdb$Ecosystem_type %in% c("Steppe", "Meadow")
 	if(any(grassland)) {
-	  stop("Grassland synonym (should be grassland) in records: ", paste(which(grassland), collapse = " "))    
+	  stop("Grassland synonym (should be grassland) in rows: ", paste(which(grassland), collapse = " "))    
 	}
 	wetland <- srdb$Ecosystem_type %in% c("Swamp", "Marsh", "Bog")
 	if(any(wetland)) {
