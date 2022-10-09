@@ -9,7 +9,7 @@ check_numeric <- function(d, dname = deparse(substitute(d))) {
   if(!is.numeric(d)) {
     d[ d == "" ] <- "0"	# don't want blanks to be listed below
     stop(paste(dname, " is not numeric", 
-               paste("- in records: ", paste(which(is.na(as.numeric(d))), collapse = " "))))
+               paste("- in rows: ", paste(which(is.na(as.numeric(d))), collapse = " "))))
   }
   invisible(is.numeric(d))
 }
@@ -19,7 +19,7 @@ check_bounds <- function(d, lim, dname = deparse(substitute(d))) { 	# d should b
     oob <- d < lim[ 1 ] | d > lim[ 2 ]
     if(any(oob, na.rm = TRUE)) {
       message(paste(dname, " out of bounds (", lim[ 1 ], ",", lim[ 2 ], ")"))
-      message(paste("- in records: ", paste(which(oob), collapse = " ")))
+      message(paste("- in rows: ", paste(which(oob), collapse = " ")))
     }
   }
 }
@@ -27,7 +27,7 @@ check_lesseq <- function(d1, d2) { 	# d1 should be < =  d2
   greater <- d1 > d2
   if(any(greater, na.rm = TRUE)) {
     message(paste(deparse(substitute(d1)), " greater than ", deparse(substitute(d2))))
-    message(paste("- in records: ", paste(which(greater), collapse = " ")))
+    message(paste("- in rows: ", paste(which(greater), collapse = " ")))
   }
 }
 check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should be ascending range
@@ -35,7 +35,7 @@ check_labels <- function(d, labs, dname = deparse(substitute(d))) {		# d should 
   inlabs <- d %in% labs
   if(any(!inlabs, na.rm = TRUE)) {
     message(paste(dname, " not in labels ", paste(labs, collapse = " ")))
-    message(paste("- in records: ", paste(which(!inlabs), collapse = " ")))	
+    message(paste("- in rows: ", paste(which(!inlabs), collapse = " ")))	
   }
 }
 check_fieldnames <- function(d, d_info) {
@@ -116,7 +116,7 @@ with(srdb, {
     stop("There are unknown Study_number values")
   }
   
-  check_bounds(Study_midyear, c(1960, 2018))
+  check_bounds(Study_midyear, c(1960, 2020))
 	check_bounds(YearsOfData, c(1, 99))
 	check_bounds(Latitude, c(-90, 90))
 	check_bounds(Longitude, c(-180, 180))
@@ -128,23 +128,23 @@ with(srdb, {
 	# Ecosystem_type is really varied, unfortunately
 	unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
 	if(any(unmanaged_ag)) {
-		stop("Non-managed agriculture in records: ", paste(srdb$Record_number[which(unmanaged_ag)], collapse = " "))    
+		stop("Non-managed agriculture in rows: ", paste(which(unmanaged_ag), collapse = " "))    
 	}
 	plantation <- srdb$Ecosystem_type == "Plantation"
 	if(any(plantation)) {
-	  stop("Plantation (should be managed forest) in records: ", paste(srdb$Record_number[which(plantation)], collapse = " "))    
+	  stop("Plantation (should be managed forest) in rows: ", paste(which(plantation), collapse = " "))    
 	}
 	pasture <- srdb$Ecosystem_type == "Pasture"
 	if(any(pasture)) {
-	  stop("Pasture (should be managed grassland) in records: ", paste(srdb$Record_number[which(pasture)], collapse = " "))    
+	  stop("Pasture (should be managed grassland) in rows: ", paste(which(pasture), collapse = " "))    
 	}
 	grassland <- srdb$Ecosystem_type %in% c("Steppe", "Meadow")
 	if(any(grassland)) {
-	  stop("Grassland synonym (should be grassland) in records: ", paste(srdb$Record_number[which(grassland)], collapse = " "))    
+	  stop("Grassland synonym (should be grassland) in rows: ", paste(which(grassland), collapse = " "))    
 	}
 	wetland <- srdb$Ecosystem_type %in% c("Swamp", "Marsh", "Bog")
 	if(any(wetland)) {
-	  stop("Wetland synonym (should be wetland) in records: ", paste(srdb$Record_number[which(wetland)], collapse = " "))    
+	  stop("Wetland synonym (should be wetland) in rows: ", paste(which(wetland), collapse = " "))    
 	}
 
 	check_labels(Soil_drainage, c("Dry", "Wet", "Medium", "Mixed", ""))
