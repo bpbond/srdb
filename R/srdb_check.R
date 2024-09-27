@@ -5,6 +5,8 @@ if(basename(getwd()) != "srdb") stop("Working directory must be srdb/")
 
 # Helper functions ---------------------------------------------------------
 
+contiguous <- function(x) all(diff(x) == 1)
+
 check_numeric <- function(d, dname = deparse(substitute(d))) { 
   message("Checking ", dname, " is numeric")
   if(!is.numeric(d)) {
@@ -86,6 +88,16 @@ stop("Study_number values in srdb-data not found in srdb_studies: ",
      paste(unique(srdb$Study_number[!present]), collapse = ", "))
 }
 
+# Every study number should be contiguous in the data file
+contig_problem <- FALSE
+for(st in unique(srdb$Study_number)) {
+  x <- which(srdb$Study_number == st)
+  if(!contiguous(x)) {
+    message("\tStudy ", st, " is not contiguous")
+    contig_problem <- TRUE
+  }
+}
+if(contig_problem) stop("Non-contiguous study numbers are probably duplicates")
 
 # srdb-info.txt ---------------------------------------------------------
 
