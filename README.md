@@ -6,13 +6,12 @@ srdb
 
 Global soil respiration database
 
-Last data update: 09 October 2022
+Last data update: 27 September 2024
 
 About srdb
 -----------------------
-This project is **not code**. Rather, it's a database of published studies
-about soil surface CO2 flux (soil respiration) in the field, intended to
-serve as a resource for scientific analysis.
+SRDB is a database of published studies about soil surface CO2 flux (soil respiration)
+in the field, intended to serve as a resource for scientific analysis.
 
 List of files in this repository
 -----------------------
@@ -20,9 +19,8 @@ List of files in this repository
 File						|	Description
 ----------------------------|------------------------------------------------
 calculations				|	Directory of spreadsheets (generally data estimated from figures)
-corrections-additions.xls	|	Excel workbook for corrections/additions 
 expanded_field_notes.txt	|	More info on some fields and their uses 
-LICENSE | The SRDB uses the MIT license, which is short, simple, and permissive
+LICENSE                     |   The MIT license: short, simple, and permissive
 R							|	R check script directory
 README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
@@ -64,11 +62,12 @@ Date	   	|	Change
 
 How to use these data
 -----------------------
-Read the documentation! There are a few fields to be especially careful of, especially "Quality_flag", 
-"CO2_method" (e.g. many analyses will want to exclude soda lime measurements), "Manipulation" (you may
-want to filter to "None" to look at un-manipulated systems), "Ecosystem_state", and "Ecosystem_type".
+Read the documentation! There are a few fields to be especially careful of, 
+especially "Quality_flag", "CO2_method" (e.g. many analyses will want to exclude
+soda lime measurements), "Manipulation" (you may want to filter to "None" to look 
+at un-manipulated systems), "Ecosystem_state", and "Ecosystem_type".
 
-How to get a publication
+How to obtain a publication
 -----------------------
 If you'd like to obtain a PDF of one of the database studies, open an issue or email 
 Ben Bond-Lamberty, the maintainer. In either case please specify the study number.                                  
@@ -93,15 +92,15 @@ The goal is for this to be a dynamic, community database, not just an
 archived blob. Why? Well, these data undoubtedly have mistakes and
 omissions; the database could be structured more usefully for new
 analyses; and the dataset should be extended as new studies are
-published. Internet-based hosting services like give us the ability to build a 21st-century data set that is
-modified by, and grows with, the needs of the scientific community.
-There are at least ways to contribute. The **first**, and preferred, way is
-to fork out (using git) a copy of the data, just as if this were
-an open-source software project. You can then modify or add data and
-send me a pull request. The **second** way
-is to use the Excel workbook provided for data entry
-and then email the file back to one of the project administrators. The
-**third** way to help is to file a bug report on the Issues tab or via email
-to one of the admins. For all cases, instructions can be found with the
-downloaded material.
+published. Internet-based hosting services like give us the ability to
+build a 21st-century data set that is modified by, and grows with, the
+needs of the scientific community. There are at least ways to
+contribute. The **first**, and preferred, way is to fork out (using git)
+a copy of the data, just as if this were an open-source software
+project. You can then modify or add data and send me a pull request. The
+**second** way is to use the Excel workbook provided for data entry and
+then email the file back to one of the project administrators. The
+**third** way to help is to file a bug report on the Issues tab or via
+email to one of the admins. For all cases, instructions can be found
+with the downloaded material.
 
