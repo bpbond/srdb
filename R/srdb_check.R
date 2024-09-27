@@ -121,6 +121,15 @@ with(srdb, {
 	check_bounds(YearsOfData, c(1, 99))
 	check_bounds(Latitude, c(-90, 90))
 	check_bounds(Longitude, c(-180, 180))
+	
+	# Special check for U.S. studies with mis-entered longitude
+	bad_USA <- srdb$Country == "USA" & srdb$Longitude > 0 & srdb$Region != "Guam"
+	bad_USA[is.na(bad_USA)] <- FALSE
+	if(any(bad_USA)) {
+	  stop("'USA' entries with positive longitude: ", 
+	       paste(which(bad_USA), collapse = " "))    
+	}
+	
 	check_bounds(Elevation, c(-10, 7999))
 	
 	# Manipulation is a mess, unfortunately
