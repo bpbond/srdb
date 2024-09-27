@@ -1,5 +1,5 @@
-# Run checks on SRDB data for consistency, columns types, out of bounds, etc.
-# BBL 2019-09-17
+# Checks SRDB data for consistency, columns types, out of bounds, etc.,
+# BBL 2019-09-17; updated 2024-09-27
 
 if(basename(getwd()) != "srdb") stop("Working directory must be srdb/")
 
