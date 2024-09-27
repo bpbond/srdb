@@ -122,6 +122,14 @@ with(srdb, {
 	check_bounds(Latitude, c(-90, 90))
 	check_bounds(Longitude, c(-180, 180))
 	check_bounds(Elevation, c(-10, 7999))
+	
+	# Manipulation is a mess, unfortunately
+	controls <- srdb$Manipulation == "Control" | srdb$Manipulation == "CK"
+	if(any(controls)) {
+	  stop("'Control' or 'CK' entries in Manipulation; should be 'None': ", 
+	       paste(which(controls), collapse = " "))    
+	}
+	
 	check_bounds(Age_ecosystem, c(0, 999))
 	check_bounds(Age_disturbance, c(0, 999))
 	check_labels(Ecosystem_state, c("Managed", "Unmanaged", "Natural", ""))
@@ -154,7 +162,7 @@ with(srdb, {
 	check_bounds(Soil_sand, c(0.0, 999.9))
 	check_bounds(Soil_silt, c(0.0, 999.9))
 	check_bounds(Soil_clay, c(0.0, 999.9))
-	check_bounds(MAT, c(-30, 40))
+	check_bounds(MAT, c(-30, 55))
 	check_bounds(MAP, c(0, 9999))
 	check_bounds(PET, c(0, 9999))
 	check_bounds(Study_temp, c(-30, 40))
