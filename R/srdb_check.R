@@ -155,7 +155,7 @@ with(srdb, {
 	check_bounds(Age_disturbance, c(0, 999))
 	check_labels(Ecosystem_state, c("Managed", "Unmanaged", "Natural", ""))
 	
-	# Ecosystem_type is really varied, unfortunately
+	# Ecosystem_type is also varied
 	unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
 	if(any(unmanaged_ag)) {
 		stop("Non-managed agriculture in rows: ", paste(which(unmanaged_ag), collapse = " "))    
@@ -186,7 +186,7 @@ with(srdb, {
 	check_bounds(MAT, c(-30, 55))
 	check_bounds(MAP, c(0, 9999))
 	check_bounds(PET, c(0, 9999))
-	check_bounds(Study_temp, c(-30, 40))
+	check_bounds(Study_temp, c(-30, 46))
 	check_bounds(Study_precip, c(0, 9999))
 	# TODO: meas_method one of a few values
 	check_bounds(Meas_interval, c(0.01, 365))
