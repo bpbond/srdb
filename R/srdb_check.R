@@ -1,6 +1,7 @@
 # Run checks on SRDB data for consistency, columns types, out of bounds, etc.
 # BBL 2019-09-17
 
+if(basename(getwd()) != "srdb") stop("Working directory must be srdb/")
 
 # Helper functions ---------------------------------------------------------
 
@@ -120,7 +121,7 @@ with(srdb, {
 	check_bounds(YearsOfData, c(1, 99))
 	check_bounds(Latitude, c(-90, 90))
 	check_bounds(Longitude, c(-180, 180))
-	check_bounds(Elevation, c(0, 7999))
+	check_bounds(Elevation, c(-10, 7999))
 	check_bounds(Age_ecosystem, c(0, 999))
 	check_bounds(Age_disturbance, c(0, 999))
 	check_labels(Ecosystem_state, c("Managed", "Unmanaged", "Natural", ""))
