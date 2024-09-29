@@ -26,5 +26,6 @@ Temporary Items
 
 # Script diagnostic plots
 *.pdf
-*.png
+
+README.html
 
