@@ -1,21 +1,19 @@
- **If you want a simple download**, click on the "Releases" tab above. 
+ **If you want a simple download**, click on [Releases](https://github.com/bpbond/srdb/releases).
  There's also a version on the [ORNL DAAC](https://doi.org/10.3334/ORNLDAAC/1235).
 
-srdb
-====
+# srdb
 
 Global soil respiration database
-
 Last data update: 09 October 2022
 
-About srdb
------------------------
-This project is **not code**. Rather, it's a database of published studies
-about soil surface CO2 flux (soil respiration) in the field, intended to
-serve as a resource for scientific analysis.
+## About
 
-List of files in this repository
------------------------
+The global soil respiration database (SRDB) is a database of published
+studies about the flux of CO2 from the soil surface to the atmosphere ("soil 
+respiration"") in the field. It's intended to serve as a resource for
+scientific analysis.
+
+## Files in this repository
 
 File						|	Description
 ----------------------------|------------------------------------------------
@@ -32,8 +30,7 @@ srdb-equations.csv			|	Temperature and moisture sensitivity equations
 srdb-studies_fields.txt		|	Metadata for the srdb-studies file
 srdb-studies.csv			|	Studies database
 
-Major changelog
------------------------
+## Major changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
@@ -62,46 +59,49 @@ Date	   	|	Change
 20100517 | PY2009 data added. Field reordered to match Biogeosciences ms.
 20100222 | `Partition_method` field fixed for many records. Thanks to Myroslava Khomik.
 
-How to use these data
------------------------
-Read the documentation! There are a few fields to be especially careful of, especially "Quality_flag", 
-"CO2_method" (e.g. many analyses will want to exclude soda lime measurements), "Manipulation" (you may
-want to filter to "None" to look at un-manipulated systems), "Ecosystem_state", and "Ecosystem_type".
+![A plot of database growth over time](R/growth_plot.png)
 
-How to get a publication
------------------------
-If you'd like to obtain a PDF of one of the database studies, open an issue or email 
-Ben Bond-Lamberty, the maintainer. In either case please specify the study number.                                  
+## How to use these data
 
-How to cite these data
------------------------
-This data set is **open**, and no co-authorship is required if you make use of it. The relevant citation is:
-* Jian, Vargas, Anderson-Teixeira, Stell, Herrmann, Horn, Kholod, Manzon, Marchesi, Paredes, and Bond-Lamberty (2021). A restructured and updated global soil respiration database (SRDB-V5), *Earth Syst. Sci. Data* 13:255–267, 2021, doi: [10.5194/essd-13-255-2021](https://doi.org/10.5194/essd-13-255-2021).
+Read the documentation! There are a few fields to be especially careful of, 
+especially "Quality_flag", "CO2_method" (e.g. many analyses will want to 
+exclude soda lime measurements), "Manipulation" (you may want to filter to 
+"None" to look at un-manipulated systems), "Ecosystem_state", 
+and "Ecosystem_type".
+
+## How to get a publication
+
+If you'd like to obtain a PDF of one of the database studies, open an issue
+or email Ben Bond-Lamberty, the maintainer. 
+In either case please specify the study number.                                  
+
+## How to cite these data
+
+This data set is **open**, and no co-authorship is required if you make 
+use of it. The relevant citation is:
+
+* Jian, Vargas, Anderson-Teixeira, Stell, Herrmann, Horn, Kholod, Manzon, Marchesi, Paredes, and Bond-Lamberty (2021). A restructured and updated global soil respiration database (SRDB-V5), _Earth Syst. Sci. Data_ 13:255–267, 2021, doi: [10.5194/essd-13-255-2021](https://doi.org/10.5194/essd-13-255-2021).
 
 The older, original citation is:
-* Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, *Biogeosciences* 7:1321-1344, doi: [10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
 
-Analyses using these data should include the database version (i.e. the tag, such as "v20131218a", and ideally the git commit), download date, and URL. (At some point in the future, releases will include a DOI, too.)
+* Bond-Lamberty and Thomson (2010). A global database of soil respiration measurements, _Biogeosciences_ 7:1321-1344, doi: [10.5194/bgd-7-1321-2010](http://dx.doi.org/10.5194/bgd-7-1321-2010).
 
-Mailing list
------------------------
-If you'd like to know when these data are updated, a mailing list is available at http://groups.google.com/group/srdb-project-announce.
+Analyses using these data should include the database version (i.e. the tag,
+such as "v20131218a", and ideally the git commit hash), download date, and URL. 
+(At some point in the future, releases will include a DOI, too.)
 
-How to contribute
------------------------
+## How to contribute
+
 The goal is for this to be a dynamic, community database, not just an
 archived blob. Why? Well, these data undoubtedly have mistakes and
 omissions; the database could be structured more usefully for new
 analyses; and the dataset should be extended as new studies are
-published. Internet-based hosting services like give us the ability to build a 21st-century data set that is
-modified by, and grows with, the needs of the scientific community.
+published. Internet-based hosting services like give us the ability to 
+build a 21st-century data set that is modified by, and grows with, 
+the needs of the scientific community.
+
 There are at least ways to contribute. The **first**, and preferred, way is
 to fork out (using git) a copy of the data, just as if this were
 an open-source software project. You can then modify or add data and
-send me a pull request. The **second** way
-is to use the Excel workbook provided for data entry
-and then email the file back to one of the project administrators. The
-**third** way to help is to file a bug report on the Issues tab or via email
-to one of the admins. For all cases, instructions can be found with the
-downloaded material.
-
+send me a pull request. 
+The **second** way is to [open an issue](https://github.com/bpbond/srdb/issues).
