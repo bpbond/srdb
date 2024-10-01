@@ -10,7 +10,7 @@ Last data update: 09 October 2022
 
 The global soil respiration database (SRDB) is a database of published
 studies about the flux of CO2 from the soil surface to the atmosphere ("soil 
-respiration"") in the field. It's intended to serve as a resource for
+respiration") in the field. It's intended to serve as a resource for
 scientific analysis.
 
 ## Files in this repository
@@ -24,10 +24,13 @@ R							|	R check script directory
 README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
 srdb-data.csv				|	Main database
-srdb-equations_fields.csv	|	Metadata for the srdb-equations file_
+srdb-equations_fields.csv	|	Metadata for the srdb-equations file
 srdb-equations.csv			|	Temperature and moisture sensitivity equations
 srdb-studies_fields.txt		|	Metadata for the srdb-studies file
 srdb-studies.csv			|	Studies database
+
+Note that the `srdb-equations.csv` entries used to be part of the main data file,
+but it was a lot of work, and didn't seem to be used, so we stopped updating it.
 
 ## Major changelog
 
