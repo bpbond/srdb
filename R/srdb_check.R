@@ -145,9 +145,9 @@ with(srdb, {
 	check_bounds(Elevation, c(-10, 7999))
 	
 	# Manipulation is a mess, unfortunately
-	controls <- srdb$Manipulation == "Control" | srdb$Manipulation == "CK"
+	controls <- srdb$Manipulation %in% c("Control", "CK", "CT")
 	if(any(controls)) {
-	  stop("'Control' or 'CK' entries in Manipulation; should be 'None': ", 
+	  stop("'Control' or 'CK' or 'CT' entries in Manipulation; should be 'None': ", 
 	       paste(which(controls), collapse = " "))    
 	}
 	
