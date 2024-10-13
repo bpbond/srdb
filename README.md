@@ -4,13 +4,13 @@
 # srdb
 
 Global soil respiration database
-Last data update: 09 October 2022
+Last data update: 12 October 2024
 
 ## About
 
 The global soil respiration database (SRDB) is a database of published
 studies about the flux of CO2 from the soil surface to the atmosphere ("soil 
-respiration"") in the field. It's intended to serve as a resource for
+respiration") in the field. It's intended to serve as a resource for
 scientific analysis.
 
 ## Files in this repository
@@ -18,22 +18,25 @@ scientific analysis.
 File						|	Description
 ----------------------------|------------------------------------------------
 calculations				|	Directory of spreadsheets (generally data estimated from figures)
-corrections-additions.xls	|	Excel workbook for corrections/additions 
 expanded_field_notes.txt	|	More info on some fields and their uses 
-LICENSE | The SRDB uses the MIT license, which is short, simple, and permissive
+LICENSE                     |   The MIT license: short, simple, and permissive
 R							|	R check script directory
 README.md					|	Generates this README
 srdb-data_fields.txt		|	Metadata for the srdb-data file
 srdb-data.csv				|	Main database
-srdb-equations_fields.csv	|	Metadata for the srdb-equations file_
+srdb-equations_fields.csv	|	Metadata for the srdb-equations file
 srdb-equations.csv			|	Temperature and moisture sensitivity equations
 srdb-studies_fields.txt		|	Metadata for the srdb-studies file
 srdb-studies.csv			|	Studies database
+
+Note that the `srdb-equations.csv` entries used to be part of the main data file,
+but it was a lot of work, and didn't seem to be used, so we stopped updating it.
 
 ## Major changelog
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
+20241012 | Data up to 2022 entered by Gabriela Aguilar-Martinez, Melat Ghebreselassie, Alanna Hart, Brandon Kim, and Carly Pierce.
 20221009 | New 2018-2019 data entered by Elon Atlaw, Mahlet Dagnachew, and Emily Kang. 
 20210621 | Many (400+) corrections to location, time, ecosystem type, etc.; thanks to Ni Huang! See PR #126.
 20210522 | New 2017 data entered by Shoshi Hornum and Hope Ng.

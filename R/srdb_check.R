@@ -1,8 +1,11 @@
-# Run checks on SRDB data for consistency, columns types, out of bounds, etc.
-# BBL 2019-09-17
+# Checks SRDB data for consistency, columns types, out of bounds, etc.,
+# BBL 2019-09-17; updated 2024-09-27
 
+if(basename(getwd()) != "srdb") stop("Working directory must be srdb/")
 
 # Helper functions ---------------------------------------------------------
+
+contiguous <- function(x) all(diff(x) == 1)
 
 check_numeric <- function(d, dname = deparse(substitute(d))) { 
   message("Checking ", dname, " is numeric")
@@ -85,6 +88,16 @@ stop("Study_number values in srdb-data not found in srdb_studies: ",
      paste(unique(srdb$Study_number[!present]), collapse = ", "))
 }
 
+# Every study number should be contiguous in the data file
+contig_problem <- FALSE
+for(st in unique(srdb$Study_number)) {
+  x <- which(srdb$Study_number == st)
+  if(!contiguous(x)) {
+    message("\tStudy ", st, " is not contiguous")
+    contig_problem <- TRUE
+  }
+}
+if(contig_problem) stop("Non-contiguous study numbers are probably duplicates")
 
 # srdb-info.txt ---------------------------------------------------------
 
@@ -120,12 +133,29 @@ with(srdb, {
 	check_bounds(YearsOfData, c(1, 99))
 	check_bounds(Latitude, c(-90, 90))
 	check_bounds(Longitude, c(-180, 180))
-	check_bounds(Elevation, c(0, 7999))
+	
+	# Special check for U.S. studies with mis-entered longitude
+	bad_USA <- srdb$Country == "USA" & srdb$Longitude > 0 & srdb$Region != "Guam"
+	bad_USA[is.na(bad_USA)] <- FALSE
+	if(any(bad_USA)) {
+	  stop("'USA' entries with positive longitude: ", 
+	       paste(which(bad_USA), collapse = " "))    
+	}
+	
+	check_bounds(Elevation, c(-10, 7999))
+	
+	# Manipulation is a mess, unfortunately
+	controls <- srdb$Manipulation %in% c("Control", "CK", "CT")
+	if(any(controls)) {
+	  stop("'Control' or 'CK' or 'CT' entries in Manipulation; should be 'None': ", 
+	       paste(which(controls), collapse = " "))    
+	}
+	
 	check_bounds(Age_ecosystem, c(0, 999))
 	check_bounds(Age_disturbance, c(0, 999))
 	check_labels(Ecosystem_state, c("Managed", "Unmanaged", "Natural", ""))
 	
-	# Ecosystem_type is really varied, unfortunately
+	# Ecosystem_type is also varied
 	unmanaged_ag <- srdb$Ecosystem_type == "Agriculture" & srdb$Ecosystem_state != "Managed"
 	if(any(unmanaged_ag)) {
 		stop("Non-managed agriculture in rows: ", paste(which(unmanaged_ag), collapse = " "))    
@@ -153,10 +183,10 @@ with(srdb, {
 	check_bounds(Soil_sand, c(0.0, 999.9))
 	check_bounds(Soil_silt, c(0.0, 999.9))
 	check_bounds(Soil_clay, c(0.0, 999.9))
-	check_bounds(MAT, c(-30, 40))
+	check_bounds(MAT, c(-30, 55))
 	check_bounds(MAP, c(0, 9999))
 	check_bounds(PET, c(0, 9999))
-	check_bounds(Study_temp, c(-30, 40))
+	check_bounds(Study_temp, c(-30, 46))
 	check_bounds(Study_precip, c(0, 9999))
 	# TODO: meas_method one of a few values
 	check_bounds(Meas_interval, c(0.01, 365))
