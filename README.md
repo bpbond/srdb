@@ -36,6 +36,7 @@ but it was a lot of work, and didn't seem to be used, so we stopped updating it.
 
 Date	   	|	Change
 -------- | ------------------------------------------------------------
+20250503 | Data up to 2022 entered by Ava Cook and Jennifer Mendez Gomez.
 20241012 | Data up to 2022 entered by Gabriela Aguilar-Martinez, Melat Ghebreselassie, Alanna Hart, Brandon Kim, and Carly Pierce.
 20221009 | New 2018-2019 data entered by Elon Atlaw, Mahlet Dagnachew, and Emily Kang. 
 20210621 | Many (400+) corrections to location, time, ecosystem type, etc.; thanks to Ni Huang! See PR #126.
