@@ -83,4 +83,4 @@ Quality control flags are as follows:
 
 ----------
 Rank	[ in srdb_studies.csv ]
-Note this score (1-4, with 1 being "highly relevant" and 4 "not relevant") is not an assessment of the study's scientific merit or validity; it's simply a judgement, based on reading the abstract and title, of how relevant this study is to the database (i.e., is it likely to have appropriate data?).
+Note this score (1-4, with 1 being "highly relevant" and 4 "not relevant") is not an assessment of the study's scientific merit or validity; it's simply a judgment, based on reading the abstract and title, of how relevant this study is to the database (i.e., is it likely to have appropriate data?).
