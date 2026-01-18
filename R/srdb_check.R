@@ -87,6 +87,21 @@ if(any(!present)) {
 stop("Study_number values in srdb-data not found in srdb_studies: ",
      paste(unique(srdb$Study_number[!present]), collapse = ", "))
 }
+# Every study number in srdb-data should be "Y" entered in srdb_studies
+study_DE_Ys <- srdb_studies$Study_number[ srdb_studies$DE == "Y"]
+entered <- unique(srdb$Study_number) %in% study_DE_Ys
+if(any(!entered)) {
+    stop("Study_number values in srdb-data not marked as entered in srdb_studies: ",
+         paste(unique(srdb$Study_number)[!entered], collapse = ", "))
+}
+# Every study number in srdb-studies marked as entered should be srdb-data
+# study_DE_Ys <- srdb_studies$Study_number[ srdb_studies$DE == "Y"]
+# in_srdb <- study_DE_Ys %in% srdb$Study_number
+# if(any(!in_srdb)) {
+#     stop("'Y' study_numbers in srdb-studies not in srdb-data: ",
+#          paste(study_DE_Ys[!in_srdb], collapse = ", "))
+# }
+# This is TODO for later -- will take a lot of investigative work
 
 # Every study number should be contiguous in the data file
 contig_problem <- FALSE
