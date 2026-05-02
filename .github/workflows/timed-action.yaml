@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: '25 * * * *'
+    - cron: '30 * * * *'
       timezone: "America/New_York"
 
 name: Timed GA
