@@ -1,0 +1,14 @@
+on:
+  schedule:
+    - cron: '15,30 * * * *'
+      timezone: "America/New_York"
+
+name: Timed GA
+
+jobs:
+  timed_action:
+    name: Timed action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every time
+        run: echo "This step will always run"
