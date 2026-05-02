@@ -1,6 +1,7 @@
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '30,40,50 * * * *'
+    - cron: '53 * * * *'
 
 name: Timed GA
 
