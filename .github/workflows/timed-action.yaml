@@ -1,14 +1,14 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: '53 * * * *'
+    - cron: '43 * * * *'
 
-name: Timed GA
+name: Timed GitHub Action
 
 jobs:
   timed_action:
-    name: Timed action
+    name: Job for timed action
     runs-on: ubuntu-latest
     steps:
-      - name: Every time
+      - name: Hello
         run: echo "Hello world!"
