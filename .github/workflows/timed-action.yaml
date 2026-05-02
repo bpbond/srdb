@@ -1,5 +1,4 @@
 on:
-  workflow_dispatch:
   schedule:
     - cron: '30,40,50 * * * *'
       timezone: "America/New_York"
